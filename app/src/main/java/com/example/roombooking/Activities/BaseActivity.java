@@ -1,4 +1,4 @@
-package com.example.roombooking;
+package com.example.roombooking.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

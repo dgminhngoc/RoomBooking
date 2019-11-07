@@ -1,6 +1,8 @@
-package com.example.roombooking;
+package com.example.roombooking.Activities;
 
 import android.os.Bundle;
+
+import com.example.roombooking.R;
 
 public class MainActivity extends BaseActivity
 {
