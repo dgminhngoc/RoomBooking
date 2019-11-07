@@ -4,6 +4,8 @@
     package="com.example.roombooking"
     tools:ignore="GoogleAppIndexingWarning">
 
+    <!--Permission for checking connection's availability-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
