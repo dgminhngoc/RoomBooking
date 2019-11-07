@@ -1,4 +1,4 @@
-package com.example.roombooking.Fragments;
+package com.example.roombooking.fragments;
 
 import androidx.fragment.app.Fragment;
 

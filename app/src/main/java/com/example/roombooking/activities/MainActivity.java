@@ -1,4 +1,4 @@
-package com.example.roombooking.Activities;
+package com.example.roombooking.activities;
 
 import android.os.Bundle;
 
