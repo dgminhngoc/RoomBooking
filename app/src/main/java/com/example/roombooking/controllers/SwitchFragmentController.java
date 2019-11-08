@@ -1,6 +1,5 @@
 package com.example.roombooking.controllers;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,10 +16,10 @@ public class SwitchFragmentController
 	 *
 	 * @param pBaseChildFragment: the instance of fragment that want to show
 	 */
-	public static synchronized   <T extends BaseFragment> void switchFragment(int containerView,
-																									  FragmentManager pFragmentManager,
-																									  T pBaseChildFragment,
-																									  boolean isAddToBackStack)
+	public static synchronized <T extends BaseFragment> void switchFragment(int containerView,
+																									FragmentManager pFragmentManager,
+																									T pBaseChildFragment,
+																									boolean isAddToBackStack)
 	{
 		if (pFragmentManager != null) {
 			FragmentTransaction pFragmentTransaction = pFragmentManager.beginTransaction();
@@ -36,12 +35,11 @@ public class SwitchFragmentController
 	/**
 	 * switch to the previous fragment and remove current fragment
 	 */
-	public static synchronized   <T extends BaseFragment> void switchToPreviousFragment(int containerView,
-																													FragmentManager pFragmentManager,
-																													T pBaseChildFragment)
+	public static synchronized void switchToPreviousFragment(FragmentManager pFragmentManager)
 	{
 		if (pFragmentManager != null) {
-			pFragmentManager.popBackStack();
+			if(pFragmentManager.getBackStackEntryCount() > 1)
+				pFragmentManager.popBackStack();
 		}
 	}
 
@@ -50,7 +48,7 @@ public class SwitchFragmentController
 	 *
 	 * @param pFragmentTransaction
 	 */
-	public  static synchronized  void doAddAnimation(FragmentTransaction pFragmentTransaction) {
+	public static synchronized void doAddAnimation(FragmentTransaction pFragmentTransaction) {
 		if (pFragmentTransaction != null) {
 			pFragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,
 					R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit);
@@ -61,7 +59,7 @@ public class SwitchFragmentController
 	 * pop fragment from backstack by tag
 	 * @param tag :
 	 */
-	public  static synchronized  void popToFragmentByTag(FragmentManager pFragmentManager, String tag) {
+	public static synchronized void popToFragmentByTag(FragmentManager pFragmentManager, String tag) {
 		if (pFragmentManager != null && tag != null) {
 			pFragmentManager.popBackStackImmediate(tag, 0);
 		}
@@ -71,7 +69,8 @@ public class SwitchFragmentController
 	 * clear all fragment has been existed on back stack
 	 * @param pFragmentManager
 	 */
-	public  static synchronized  void clearFragment(FragmentManager pFragmentManager) {
+	public static synchronized  void clearFragment(FragmentManager pFragmentManager)
+	{
 		if (pFragmentManager != null) {
 			while (pFragmentManager.getBackStackEntryCount() > 0) {
 				pFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -82,14 +81,13 @@ public class SwitchFragmentController
 	/**
 	 * get current fragment at a container view
 	 * @param pFragmentManager : the fragment manager manage fragments
-	 * @param containerViewID : the container contain fragments
 	 * @return : the current fragment , null if otherwise
 	 */
-	public  static synchronized Fragment getCurrentFragment(FragmentManager pFragmentManager,int containerViewID){
-		Fragment currentFragment = null;
-		if (pFragmentManager != null){
-			currentFragment = pFragmentManager.findFragmentById(containerViewID);
-		}
-		return currentFragment;
+	public static synchronized BaseFragment getCurrentFragment(FragmentManager pFragmentManager)
+	{
+		if (pFragmentManager != null)
+			return (BaseFragment) pFragmentManager.findFragmentById(R.id.containerView);
+
+		return null;
 	}
 }

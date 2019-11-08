@@ -15,6 +15,12 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		SwitchFragmentController.switchFragment(R.id.containerView, getSupportFragmentManager(), new TestFragmentA(), true);
+		switchFragment(R.id.containerView, getSupportFragmentManager(), new TestFragmentA(), true);
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		SwitchFragmentController.getCurrentFragment(getSupportFragmentManager()).onBackPress();
 	}
 }

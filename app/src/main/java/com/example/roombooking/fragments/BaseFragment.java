@@ -28,11 +28,13 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	/**
 	 * the content view of this fragment
 	 */
-	protected ViewGroup contentView;
+	private ViewGroup contentView;
 	/**
 	 * the flag mark allow reload content view of this fragment when the {@link Fragment#onCreateView} method re-call
 	 */
-	protected boolean isReloadContent = false;
+	private boolean isReloadContent = false;
+
+	private boolean isOnTransition = false;
 
 	/**
 	 * switch to a fragment,and add it to backstack
@@ -94,6 +96,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	{
 		if (animation != null)
 		{
+			isOnTransition = false;
 			animation.cancel();
 			animation.setAnimationListener(null);
 		}
@@ -110,7 +113,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	@Override
 	public final void onAnimationStart (Animation animation)
 	{
-
+		isOnTransition = true;
 	}
 
 	@Override
@@ -190,7 +193,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		{
 			if (getLayoutContentID() != -1)
 			{
-				contentView = (ViewGroup) inflater.inflate(getLayoutContentID(), null);
+				contentView = (ViewGroup) inflater.inflate(getLayoutContentID(), container, false);
 			}
 		}
 		else
@@ -233,9 +236,11 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	 */
 	public void onBackPress ()
 	{
-		SwitchFragmentController.switchToPreviousFragment(getLayoutContentID(),getFragmentManager(), this);
+		if(!isOnTransition)
+		{
+			SwitchFragmentController.switchToPreviousFragment(getFragmentManager());
+		}
 	}
-
 
 	/**
 	 * get content layout of this fragment

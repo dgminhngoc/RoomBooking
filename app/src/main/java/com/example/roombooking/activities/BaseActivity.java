@@ -18,6 +18,6 @@ public class BaseActivity extends AppCompatActivity
 																			  T pBaseChildFragment,
 																			  boolean isAddToBackstack)
 	{
-		SwitchFragmentController.switchFragment(containerView, getSupportFragmentManager(), pBaseChildFragment, isAddToBackstack);
+		SwitchFragmentController.switchFragment(containerView, pFragmentManager, pBaseChildFragment, isAddToBackstack);
 	}
 }
