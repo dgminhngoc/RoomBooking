@@ -24,6 +24,7 @@ public class SwitchFragmentController
 		if (pFragmentManager != null) {
 			FragmentTransaction pFragmentTransaction = pFragmentManager.beginTransaction();
 			doAddAnimation(pFragmentTransaction);
+
 			pFragmentTransaction.replace(containerView, pBaseChildFragment);
 			if (isAddToBackStack) {
 				pFragmentTransaction.addToBackStack(pBaseChildFragment.getClass().getSimpleName());
