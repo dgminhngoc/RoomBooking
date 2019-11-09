@@ -25,8 +25,7 @@ public class BaseActivity extends AppCompatActivity
 		if(mFragment != null)
 			mFragment.onBackPressed();
 
-		int x = getSupportFragmentManager().getBackStackEntryCount();
-		if(x == 0)
+		if(getSupportFragmentManager().getBackStackEntryCount() == 0)
 			finish();
 	}
 }
