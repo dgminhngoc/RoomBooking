@@ -39,8 +39,9 @@ public class SwitchFragmentController
 	public static synchronized void switchToPreviousFragment(FragmentManager pFragmentManager)
 	{
 		if (pFragmentManager != null) {
-			if(pFragmentManager.getBackStackEntryCount() > 1)
-				pFragmentManager.popBackStack();
+			if (pFragmentManager.getBackStackEntryCount() >= 0) {
+				pFragmentManager.popBackStackImmediate();
+			}
 		}
 	}
 
@@ -51,8 +52,10 @@ public class SwitchFragmentController
 	 */
 	public static synchronized void doAddAnimation(FragmentTransaction pFragmentTransaction) {
 		if (pFragmentTransaction != null) {
-			pFragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,
-					R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit);
+			pFragmentTransaction.setCustomAnimations(	R.anim.fragment_slide_left_enter,
+																	R.anim.fragment_slide_left_exit,
+																	R.anim.fragment_slide_left_enter,
+																	R.anim.fragment_slide_left_exit);
 		}
 	}
 

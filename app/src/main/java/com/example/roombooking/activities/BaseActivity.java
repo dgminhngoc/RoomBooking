@@ -17,4 +17,16 @@ public class BaseActivity extends AppCompatActivity
 	{
 		SwitchFragmentController.switchFragment(R.id.containerView, getSupportFragmentManager(), pBaseChildFragment, isAddToBackstack);
 	}
+
+	@Override
+	public void onBackPressed()
+	{
+		BaseFragment mFragment = SwitchFragmentController.getCurrentFragment(getSupportFragmentManager());
+		if(mFragment != null)
+			mFragment.onBackPressed();
+
+		int x = getSupportFragmentManager().getBackStackEntryCount();
+		if(x == 0)
+			finish();
+	}
 }

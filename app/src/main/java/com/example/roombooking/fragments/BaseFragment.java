@@ -234,7 +234,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	/**
 	 * event Back button is pressed
 	 */
-	public void onBackPress ()
+	public void onBackPressed()
 	{
 		if(!isOnTransition)
 		{
