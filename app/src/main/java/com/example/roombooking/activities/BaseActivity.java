@@ -9,9 +9,20 @@ import com.example.roombooking.fragments.BaseFragment;
 public abstract class BaseActivity extends AppCompatActivity
 {
 	/**
-	 * switch to a fragment,and add it to back stack
+	 * switch to a fragment, and add it to back stack
 	 *
 	 * @param pBaseChildFragment: the instance of fragment that want to show
+	 */
+	protected <T extends BaseFragment> void switchFragment (T pBaseChildFragment)
+	{
+		SwitchFragmentController.switchFragment(R.id.containerView, getSupportFragmentManager(), pBaseChildFragment, true);
+	}
+
+	/**
+	 * switch to a fragment, and add it to back stack if defined
+	 *
+	 * @param pBaseChildFragment: the instance of fragment that want to show
+	 * @param isAddToBackStack: add pBaseChildFragment to back stack if needed
 	 */
 	protected <T extends BaseFragment> void switchFragment (T pBaseChildFragment, boolean isAddToBackStack)
 	{
