@@ -37,14 +37,13 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	private boolean isOnTransition = false;
 
 	/**
-	 * switch to a fragment,and add it to backstack
+	 * replace a fragment and add to this fragment to back stack
 	 *
-	 * @param pBaseChildFragment: the instance of fragment that want to show
+	 * @param pChildFragment
 	 */
-	protected <T extends BaseFragment> void switchFragment (int containerViewId, FragmentManager pFragmentManager,
-																			  T pBaseChildFragment, boolean isAddToBackStack)
+	protected <T extends BaseFragment> void switchFragment (T pChildFragment)
 	{
-		SwitchFragmentController.switchFragment(containerViewId, pFragmentManager, pBaseChildFragment, isAddToBackStack);
+		this.switchFragment(pChildFragment, null, true);
 	}
 
 	/**
@@ -52,9 +51,9 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	 *
 	 * @param pChildFragment
 	 */
-	protected <T extends BaseFragment> void switchFragment (T pChildFragment)
+	protected <T extends BaseFragment> void switchFragment (T pChildFragment, Bundle dataBundle)
 	{
-		this.switchFragment(pChildFragment, true);
+		this.switchFragment(pChildFragment, dataBundle, true);
 	}
 
 	/**
@@ -62,9 +61,25 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	 *
 	 * @param pBaseFragment
 	 */
-	protected <T extends BaseFragment> void switchFragment (BaseFragment pBaseFragment, boolean isAddToBackStacks)
+	protected <T extends BaseFragment> void switchFragment (BaseFragment pBaseFragment, Bundle dataBundle, boolean isAddToBackStacks)
 	{
-		this.switchFragment(R.id.containerView, getFragmentManager(), pBaseFragment, isAddToBackStacks);
+		this.switchFragment(R.id.containerView, getFragmentManager(), pBaseFragment, dataBundle, isAddToBackStacks);
+	}
+
+	/**
+	 * switch to a fragment,and add it to back stack
+	 *
+	 * @param pBaseChildFragment: the instance of fragment that want to show
+	 */
+	protected <T extends BaseFragment> void switchFragment (int containerViewId, FragmentManager pFragmentManager,
+																			  T pBaseChildFragment, Bundle dataBundle, boolean isAddToBackStack)
+	{
+		SwitchFragmentController.switchFragment(containerViewId, pFragmentManager, pBaseChildFragment, dataBundle, isAddToBackStack);
+	}
+
+	protected void switchToPreviousFragment(Bundle dataBundle)
+	{
+		SwitchFragmentController.switchToPreviousFragment(getFragmentManager(), dataBundle);
 	}
 
 	/**
@@ -189,7 +204,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	{
 		Log.d("BaseFragment", "onCreateView");
 		super.onCreateView(inflater, container, savedInstanceState);
-		if (contentView == null || isReloadContent == true)
+		if (contentView == null || isReloadContent)
 		{
 			if (getLayoutContentID() != -1)
 			{
@@ -198,14 +213,12 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		}
 		else
 		{
-			if (contentView != null)
+			ViewParent pViewParent = contentView.getParent();
+			if (pViewParent != null)
 			{
-				ViewParent pViewParent = contentView.getParent();
-				if (pViewParent != null)
-				{
-					((ViewGroup) pViewParent).removeView(contentView);
-				}
+				((ViewGroup) pViewParent).removeView(contentView);
 			}
+
 		}
 
 		return contentView;
@@ -231,6 +244,11 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onDestroy();
 	}
 
+	public void onReceivedDataBundle(Bundle dataBundle)
+	{
+		// do nothing
+	}
+
 	/**
 	 * event Back button is pressed
 	 */
@@ -238,7 +256,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	{
 		if(!isOnTransition)
 		{
-			SwitchFragmentController.switchToPreviousFragment(getFragmentManager());
+			SwitchFragmentController.switchToPreviousFragment(getFragmentManager(), null);
 		}
 	}
 
