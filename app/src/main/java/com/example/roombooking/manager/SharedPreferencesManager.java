@@ -4,7 +4,7 @@ import android.content.Context;
 
 public class SharedPreferencesManager
 {
-	private static SharedPreferencesManager prefsManager;
+	private static SharedPreferencesManager prefsManager = null;
 
 	private SharedPreferencesManager ()
 	{
@@ -13,6 +13,9 @@ public class SharedPreferencesManager
 
 	public static SharedPreferencesManager getInstance (Context context)
 	{
-		return prefsManager;
+		if(SharedPreferencesManager.prefsManager == null){
+			SharedPreferencesManager.prefsManager = new SharedPreferencesManager();
+		}
+		return SharedPreferencesManager.prefsManager;
 	}
 }
