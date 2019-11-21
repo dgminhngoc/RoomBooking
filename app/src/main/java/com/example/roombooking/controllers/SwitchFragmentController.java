@@ -1,5 +1,7 @@
 package com.example.roombooking.controllers;
 
+import android.os.Bundle;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,19 +14,24 @@ import com.example.roombooking.fragments.BaseFragment;
 public class SwitchFragmentController
 {
 	/**
-	 * switch to a fragment,and add it to backstack
-	 *
-	 * @param pBaseChildFragment: the instance of fragment that want to show
+	 * switch to a fragment,and add it to back stack
+	 * @param containerView: layout id in which fragment will exist
+	 * @param pFragmentManager: FragmentManager instance from Root Activity
+	 * @param pBaseChildFragment: the instance of fragment that needs to be shown
+	 * @param dataBundle: data which will be passed pBaseChildFragment after transaction
+	 * @param isAddToBackStack: set TRUE if pBaseChildFragment needs to be stored in BackStack
 	 */
 	public static synchronized <T extends BaseFragment> void switchFragment(int containerView,
 																									FragmentManager pFragmentManager,
 																									T pBaseChildFragment,
+																									Bundle dataBundle,
 																									boolean isAddToBackStack)
 	{
 		if (pFragmentManager != null) {
 			FragmentTransaction pFragmentTransaction = pFragmentManager.beginTransaction();
 			doAddAnimation(pFragmentTransaction);
 
+			pBaseChildFragment.setArguments(dataBundle);
 			pFragmentTransaction.replace(containerView, pBaseChildFragment);
 			if (isAddToBackStack) {
 				pFragmentTransaction.addToBackStack(pBaseChildFragment.getClass().getSimpleName());
@@ -35,12 +42,16 @@ public class SwitchFragmentController
 
 	/**
 	 * switch to the previous fragment and remove current fragment
+	 * @param pFragmentManager: FragmentManager instance from Root Activity
+	 * @param dataBundle: data which will be passed pBaseChildFragment after transaction
 	 */
-	public static synchronized void switchToPreviousFragment(FragmentManager pFragmentManager)
+	public static synchronized void switchToPreviousFragment(FragmentManager pFragmentManager, Bundle dataBundle)
 	{
 		if (pFragmentManager != null) {
 			if (pFragmentManager.getBackStackEntryCount() >= 0) {
 				pFragmentManager.popBackStackImmediate();
+
+				getCurrentFragment(pFragmentManager).onReceivedDataBundle(dataBundle);
 			}
 		}
 	}
@@ -61,7 +72,8 @@ public class SwitchFragmentController
 
 	/**
 	 * pop fragment from backstack by tag
-	 * @param tag :
+	 * @param pFragmentManager: FragmentManager instance from Root Activity
+	 * @param tag: name of Fragment that you want to get
 	 */
 	public static synchronized void popToFragmentByTag(FragmentManager pFragmentManager, String tag) {
 		if (pFragmentManager != null && tag != null) {
