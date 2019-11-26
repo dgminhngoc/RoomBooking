@@ -20,22 +20,7 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		View.OnClickListener listener = new View.OnClickListener() {
-			public void onClick(View view) {
-				Fragment fragment = null;
-				if(view == findViewById(R.id.btn_login)){
-					fragment = new LoginScreenFragment();
-				}
-				FragmentManager manager = getSupportFragmentManager();
-				FragmentTransaction transaction = manager.beginTransaction();
-				transaction.replace(R.id.containerView, fragment);
-				transaction.commit();
-			}
-		};
-		Button btn1 = (Button)findViewById(R.id.btn_login);
-		btn1.setOnClickListener(listener);
-
-	}
+    }
 
 
 }
