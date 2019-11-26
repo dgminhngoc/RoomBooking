@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RoomBooking</string>
+    <string name="fh_logo">fh_logo</string>
+    <string name="user_example_fh_bielefeld_de">user.example@fh-bielefeld.de</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
 </resources>
