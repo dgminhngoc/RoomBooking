@@ -36,14 +36,12 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
         // setContentView(R.layout.activity_scanner);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-                Toast.makeText(ScannerActivity.this, "Permission is granted!", Toast.LENGTH_LONG).show();
-            }else{
-                requestPermission();
-            }
+        if(checkPermission()){
+            Toast.makeText(ScannerActivity.this, "Permission is granted!", Toast.LENGTH_LONG).show();
+        }else{
+            requestPermission();
         }
+
     }
 
     private boolean checkPermission(){
@@ -83,13 +81,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     public void onResume(){
         super.onResume();
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-                if(scannerView == null){
-                    scannerView = new ZXingScannerView(this);
-                    setContentView(scannerView);
-                }
+        if(checkPermission()){
+            if(scannerView == null){
+                scannerView = new ZXingScannerView(this);
+                setContentView(scannerView);
             }
             scannerView.setResultHandler(this);
             scannerView.startCamera();

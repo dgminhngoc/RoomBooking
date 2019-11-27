@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="108dp"
-        android:text="I HATE ANDROID STUDIO (TM)"
+        android:text="I LOVE ANDROID STUDIO (TM)"
         android:textAllCaps="true"
         android:textSize="16sp" />
 
