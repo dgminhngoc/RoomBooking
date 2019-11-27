@@ -3,19 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.roombooking"
     tools:ignore="GoogleAppIndexingWarning">
+    <!-- Permission for checking connection's availability -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <!--Permission for checking connection's availability-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hard.camera.autofocus" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Platform.MaterialComponents.Light"
-        android:fullBackupContent="false">
-        <activity android:name=".activities.LoginActivity">
+        android:theme="@style/Platform.MaterialComponents.Light">
+        <activity android:name=".activities.ScannerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +26,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.MainActivity" />
     </application>
 
 </manifest>
