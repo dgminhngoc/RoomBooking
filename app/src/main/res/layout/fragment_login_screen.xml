@@ -22,15 +22,6 @@
         app:srcCompat="@drawable/ic_logo" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="108dp"
-        android:text="I HATE ANDROID STUDIO (TM)"
-        android:textAllCaps="true"
-        android:textSize="16sp" />
-
     <EditText
         android:id="@+id/txt_User"
         android:layout_width="278dp"
