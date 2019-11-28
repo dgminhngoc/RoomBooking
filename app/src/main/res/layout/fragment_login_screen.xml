@@ -22,28 +22,18 @@
         app:srcCompat="@drawable/ic_logo" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="108dp"
-        android:text="I LOVE ANDROID STUDIO (TM)"
-        android:textAllCaps="true"
-        android:textSize="16sp" />
-
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txt_User"
         android:layout_width="278dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/user_example_fh_bielefeld_de"
-
-        android:inputType="textEmailAddress" />
+        android:hint="User"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txt_Pass"
         android:layout_width="278dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
@@ -52,7 +42,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="110dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
