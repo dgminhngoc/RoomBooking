@@ -14,7 +14,5 @@ public class LoginActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
-		startActivity(new Intent(this, MainActivity.class));
 	}
 }

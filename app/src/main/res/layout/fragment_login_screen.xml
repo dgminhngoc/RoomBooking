@@ -13,14 +13,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:contentDescription="@string/fh_logo"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
+        android:layout_width="180dp"
+        android:layout_height="174dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/fh_logo"
         app:srcCompat="@drawable/ic_logo" />
 
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Room Booking System (RBS)"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/txt_User"
@@ -28,6 +37,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:focusable="auto"
         android:gravity="center"
         android:hint="User"
         android:inputType="textPersonName" />
