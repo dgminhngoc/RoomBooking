@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.roombooking.R;
+import com.example.roombooking.fragments.BarcodeScannerFragment;
 import com.example.roombooking.fragments.LoginScreenFragment;
 
 public class MainActivity extends BaseActivity
@@ -20,6 +21,6 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-
+		switchFragment(new BarcodeScannerFragment());
     }
 }

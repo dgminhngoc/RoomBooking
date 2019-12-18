@@ -15,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.roombooking.R;
 import com.google.zxing.Result;
 
 import java.util.Scanner;
