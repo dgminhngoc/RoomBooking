@@ -27,6 +27,7 @@ public class LoginScreenFragment extends BaseFragment
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
 	{
+		System.out.println("Hello in LOGIN FRAGMENT ACTIVITY");
 		super.onViewCreated(view, savedInstanceState);
 
 		final EditText txtUserName = view.findViewById(R.id.txt_user);
@@ -56,5 +57,6 @@ public class LoginScreenFragment extends BaseFragment
 				}
 			}
 		});
+
 	}
 }

@@ -6,11 +6,12 @@ public class ServerDummy {
     private static final String[] USER_ARRAY = {"Peter", "Karl", "Kala"};
     //private final
 
-
     private ServerDummy(){
+        // ...
     }
 
     public static ServerDummy getInstance(){
+        System.out.println("Hello in SERVER DUMMY");
         if(ServerDummy.instance == null){
             ServerDummy.instance = new ServerDummy();
         }

@@ -19,10 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Platform.MaterialComponents.Light">
 
-        <activity android:name=".activities.ScannerActivity">
-
-        </activity>
-
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

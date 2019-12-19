@@ -30,6 +30,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("Hello in SCANNER ACTIVITY");
         super.onCreate(savedInstanceState);
 
         scannerView = new ZXingScannerView(this);
