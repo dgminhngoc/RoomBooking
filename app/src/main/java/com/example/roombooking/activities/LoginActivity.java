@@ -17,11 +17,16 @@ public class LoginActivity extends BaseActivity
 	{
 		System.out.println("Hello in LOGIN ACTIVITY");
 		super.onCreate(savedInstanceState);
+		// setContentView(R.layout.fragment_login_screen);
 		setContentView(R.layout.activity_login);
 
+		switchFragment(new LoginScreenFragment());
+		/*
 		Fragment mFragment = null;
 		mFragment = new LoginScreenFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.containerView, mFragment).commit();
+
+		 */
 	}
 }

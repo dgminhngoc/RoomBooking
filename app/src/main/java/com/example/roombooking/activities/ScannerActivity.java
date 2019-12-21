@@ -35,7 +35,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-        // setContentView(R.layout.activity_scanner);
         if(checkPermission()){
             Toast.makeText(ScannerActivity.this, "Permission is granted!", Toast.LENGTH_LONG).show();
         }else{

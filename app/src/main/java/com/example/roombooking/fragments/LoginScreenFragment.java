@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
+import com.example.roombooking.activities.HomeScreen;
 import com.example.roombooking.activities.LoginActivity;
 import com.example.roombooking.activities.ScannerActivity;
 import com.example.roombooking.manager.ServerDummy;
@@ -31,7 +32,7 @@ public class LoginScreenFragment extends BaseFragment
 		super.onViewCreated(view, savedInstanceState);
 
 		final EditText txtUserName = view.findViewById(R.id.txt_user);
-		EditText txtPassword = view.findViewById(R.id.txt_password);
+		final EditText txtPassword = view.findViewById(R.id.txt_password);
 		Button loginBtn = view.findViewById(R.id.btn_login);
 
 		loginBtn.setOnClickListener(new View.OnClickListener()
@@ -39,24 +40,24 @@ public class LoginScreenFragment extends BaseFragment
 			public void onClick(View view)
 			{
 				ServerDummy server = ServerDummy.getInstance();
-
 				String userName = txtUserName.getText().toString();
+				String userPassword = txtPassword.getText().toString();
 
-				if (server.checkValidUser(userName))
+				if (server.checkValidUser(userName, userPassword))
 				{
 					Toast.makeText(getContext(), "User " + userName + " eingeloggt", Toast.LENGTH_LONG).show();
-
-					Intent scanner = new Intent(getActivity(), ScannerActivity.class);
-					startActivity(scanner);
-
-					getActivity().finish();
+					//Intent scanner = new Intent(getActivity(), ScannerActivity.class);
+					//startActivity(scanner);
+					//getActivity().finish();
+					Intent intent = new Intent(getActivity(), HomeScreen.class);
+					startActivity(intent);
 				}
 				else
 				{
 					Toast.makeText(getContext(), "Failed!", Toast.LENGTH_LONG).show();
 				}
 			}
-		});
 
+		});
 	}
 }
