@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
+import com.example.roombooking.fragments.LoginScreenFragment;
 
 public class LoginActivity extends BaseActivity
 {
@@ -14,5 +15,7 @@ public class LoginActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		switchFragment(new LoginScreenFragment());
 	}
 }

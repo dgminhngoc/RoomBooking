@@ -21,6 +21,8 @@ import com.example.roombooking.utils.CommonUtils;
 **/
 public abstract class BaseFragment extends Fragment implements Animation.AnimationListener
 {
+	private Bundle dataBundle = null;
+
 	/**
 	 * The flag mark allow run background task when animation switch fragment end
 	 */
@@ -83,11 +85,19 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	}
 
 	/**
-	 * clear all fragment has been added to back stack of a it's fragemnt manager
+	 * clear all fragment has been added to back stack of a it's fragment manager
 	 */
 	public void clearFragment ()
 	{
 		SwitchFragmentController.clearFragment(getFragmentManager());
+	}
+
+	/**
+	 * clear all fragment has been added to back stack of a it's fragment manager
+	 */
+	public void clearFragment (FragmentManager fragmentManager)
+	{
+		SwitchFragmentController.clearFragment(fragmentManager);
 	}
 
 	@Override
@@ -164,8 +174,6 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 
 	/**
 	 * get status have allow start background task
-	 *
-	 * @return
 	 */
 	public boolean isAllowRunBackgroundTask ()
 	{
@@ -174,8 +182,6 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 
 	/**
 	 * allow run background task
-	 *
-	 * @param isAllowRunBackgroundTask
 	 */
 	public void setAllowRunBackgroundTask (boolean isAllowRunBackgroundTask)
 	{
@@ -231,7 +237,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onDestroyView();
 	}
 
-	protected void destroyFragment ()
+	private void destroyFragment ()
 	{
 		CommonUtils.hideSoftKeyboard(getActivity());
 	}
@@ -244,9 +250,14 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onDestroy();
 	}
 
-	public void onReceivedDataBundle(Bundle dataBundle)
+	public void setDataBundle(Bundle dataBundle)
 	{
-		// do nothing
+		this.dataBundle = dataBundle;
+	}
+
+	public Bundle getDataBundle()
+	{
+		return this.dataBundle;
 	}
 
 	/**

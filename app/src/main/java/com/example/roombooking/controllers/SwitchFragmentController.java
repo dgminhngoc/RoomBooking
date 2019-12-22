@@ -31,7 +31,7 @@ public class SwitchFragmentController
 			FragmentTransaction pFragmentTransaction = pFragmentManager.beginTransaction();
 			doAddAnimation(pFragmentTransaction);
 
-			pBaseChildFragment.setArguments(dataBundle);
+			pBaseChildFragment.setDataBundle(dataBundle);
 			pFragmentTransaction.replace(containerView, pBaseChildFragment);
 			if (isAddToBackStack) {
 				pFragmentTransaction.addToBackStack(pBaseChildFragment.getClass().getSimpleName());
@@ -51,7 +51,7 @@ public class SwitchFragmentController
 			if (pFragmentManager.getBackStackEntryCount() >= 0) {
 				pFragmentManager.popBackStackImmediate();
 
-				getCurrentFragment(pFragmentManager).onReceivedDataBundle(dataBundle);
+				getCurrentFragment(pFragmentManager).setDataBundle(dataBundle);
 			}
 		}
 	}

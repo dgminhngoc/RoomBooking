@@ -1,16 +1,9 @@
 package com.example.roombooking.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.roombooking.R;
-import com.example.roombooking.fragments.BarcodeScannerFragment;
-import com.example.roombooking.fragments.LoginScreenFragment;
+import com.example.roombooking.fragments.QRCodeScannerFragment;
 
 public class MainActivity extends BaseActivity
 {
@@ -21,6 +14,6 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		switchFragment(new BarcodeScannerFragment());
+		switchFragment(new QRCodeScannerFragment());
     }
 }

@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
-import com.example.roombooking.activities.LoginActivity;
-import com.example.roombooking.activities.ScannerActivity;
+import com.example.roombooking.activities.MainActivity;
 import com.example.roombooking.manager.ServerDummy;
 
 
@@ -45,7 +44,7 @@ public class LoginScreenFragment extends BaseFragment
 				{
 					Toast.makeText(getContext(), "User " + userName + " eingeloggt", Toast.LENGTH_LONG).show();
 
-					Intent scanner = new Intent(getActivity(), ScannerActivity.class);
+					Intent scanner = new Intent(getActivity(), MainActivity.class);
 					startActivity(scanner);
 
 					getActivity().finish();
@@ -57,4 +56,6 @@ public class LoginScreenFragment extends BaseFragment
 			}
 		});
 	}
+
+
 }
