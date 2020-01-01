@@ -8,6 +8,8 @@ public class ServerDummy {
     private static ServerDummy instance = null;
     private HashMap<String, String> accounts;
 
+    public static final String LOGIN_TOKEN  = "login_token";
+
     private ServerDummy(){
         accounts = new HashMap<>();
         String USER_PASSWORD = "password";
