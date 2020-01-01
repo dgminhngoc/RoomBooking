@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
-import com.example.roombooking.activities.HomeScreen;
+import com.example.roombooking.activities.MainActivity;
 import com.example.roombooking.manager.ServerDummy;
 
 
@@ -43,16 +43,14 @@ public class LoginScreenFragment extends BaseFragment
 
 				if (server.checkValidUser(userName, userPassword))
 				{
-					Toast.makeText(getContext(), "User " + userName + " eingeloggt", Toast.LENGTH_LONG).show();
-
-					Intent scanner = new Intent(getActivity(), HomeScreen.class);
-					startActivity(scanner);
+					Intent intent = new Intent(getActivity(), MainActivity.class);
+					startActivity(intent);
 
 					getActivity().finish();
 				}
 				else
 				{
-					Toast.makeText(getContext(), "Failed!", Toast.LENGTH_LONG).show();
+					Toast.makeText(getContext(), getContext().getResources().getString(R.string.txt_login_err_wrong_account), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

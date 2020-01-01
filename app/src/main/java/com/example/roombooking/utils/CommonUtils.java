@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 public class CommonUtils
 {
 	private static final String ROOM_PREFIX = "FH";
+	private static final String EMAIL_POSTFIX = "fh-bielefeld.de";
 
 	/**
 	 * do validate email address
@@ -29,7 +31,12 @@ public class CommonUtils
 			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(emailAddress);
 
-			return matcher.matches();
+			if(matcher.matches())
+			{
+				String[] emailParts = emailAddress.split("@");
+				return emailParts[1].equals(EMAIL_POSTFIX);
+			}
+			return false;
 		}
 		return false;
 	}
@@ -41,7 +48,7 @@ public class CommonUtils
 	 */
 	public static boolean isQRCodeValid(String qrString)
 	{
-		return qrString != null && qrString.length() > 2 && (qrString.substring(0, 1).equals(ROOM_PREFIX));
+		return qrString != null && qrString.length() > 2 && (qrString.substring(0, 2).equals(ROOM_PREFIX));
 	}
 
 	/**

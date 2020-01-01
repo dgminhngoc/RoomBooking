@@ -21,6 +21,8 @@ import com.example.roombooking.utils.CommonUtils;
 **/
 public abstract class BaseFragment extends Fragment implements Animation.AnimationListener
 {
+	protected static final int LAYOUT_ID_BLANK = -1;
+	
 	private Bundle dataBundle = null;
 
 	/**
@@ -159,7 +161,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	 * the method will be called when the animation switch screen end. Implements the background thread at here if
 	 * you want to start new background to do something when switch to this fragment
 	 */
-	protected void doControlRunBackgroundTask ()
+	private void doControlRunBackgroundTask ()
 	{
 		if (isReloadContent)
 		{
@@ -191,7 +193,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	/**
 	 * method init background thread and start it if have
 	 */
-	protected void doInitialBackgroundThreadIfHave ()
+	private void doInitialBackgroundThreadIfHave ()
 	{
 	}
 
@@ -212,7 +214,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onCreateView(inflater, container, savedInstanceState);
 		if (contentView == null || isReloadContent)
 		{
-			if (getLayoutContentID() != -1)
+			if (getLayoutContentID() != LAYOUT_ID_BLANK)
 			{
 				contentView = (ViewGroup) inflater.inflate(getLayoutContentID(), container, false);
 			}

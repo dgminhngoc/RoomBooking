@@ -17,4 +17,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="profile">Profile</string>
+    <string name="btn_txt_book">Book</string>
+
+    <!-- Texts for information -->
+    <string name="txt_no_valid_code">No valid code detected</string>
+    <string name="txt_login_err_wrong_account">Wrong username or password !!!</string>
 </resources>

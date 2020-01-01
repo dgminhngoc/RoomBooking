@@ -1,14 +1,19 @@
 package com.example.roombooking.manager;
 
+import com.example.roombooking.utils.CommonUtils;
+
+import java.util.HashMap;
+
 public class ServerDummy {
     private static ServerDummy instance = null;
-
-    private static final String[] USER_ARRAY = {"Peter", "Karl", "Kala"};
-    private static final String[] USER_PASSWORD = {"password"};
-    //private final
+    private HashMap<String, String> accounts;
 
     private ServerDummy(){
-        // ...
+        accounts = new HashMap<>();
+        String USER_PASSWORD = "password";
+        accounts.put("peter@fh-bielefeld.de", USER_PASSWORD);
+        accounts.put("karl@fh-bielefeld.de", USER_PASSWORD);
+        accounts.put("kala@fh-bielefeld.de", USER_PASSWORD);
     }
 
     public static ServerDummy getInstance(){
@@ -19,15 +24,11 @@ public class ServerDummy {
         return ServerDummy.instance;
     }
 
-    public boolean checkValidUser(String user, String password){
-        for(String name : ServerDummy.USER_ARRAY){
-            if(user.equals(name)){
-                for(String pwd : ServerDummy.USER_PASSWORD) {
-                    if (pwd.equals(password)) {
-                        return true;
-                    }
-                }
-            }
+    public boolean checkValidUser(String user, String password)
+    {
+        if(CommonUtils.isEMailValid(user))
+        {
+          return accounts.containsKey(user) && accounts.get(user).equals(password);
         }
         return false;
     }

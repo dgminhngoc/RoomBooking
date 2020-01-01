@@ -1,6 +1,5 @@
 package com.example.roombooking.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
