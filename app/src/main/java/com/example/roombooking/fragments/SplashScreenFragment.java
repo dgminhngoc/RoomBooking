@@ -30,7 +30,6 @@ public class SplashScreenFragment extends BaseFragment
 			@Override
 			public void run()
 			{
-				String token = SharedPreferencesManager.getInstance(getActivity()).getUserToken();
 				if(SharedPreferencesManager.getInstance(getActivity()).getUserToken() != null)
 				{
 					startActivity(new Intent(getActivity(), MainActivity.class));

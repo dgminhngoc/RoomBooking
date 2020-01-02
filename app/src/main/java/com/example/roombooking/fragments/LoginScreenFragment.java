@@ -21,7 +21,7 @@ import com.example.roombooking.utils.CommonUtils;
 
 public class LoginScreenFragment extends BaseFragment
 {
-	private EditText edtUserName;
+	private EditText edtUsername;
 	private EditText edtPassword;
 
 	@Override
@@ -35,16 +35,15 @@ public class LoginScreenFragment extends BaseFragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		edtUserName = view.findViewById(R.id.txt_user);
-		edtPassword = view.findViewById(R.id.txt_password);
+		edtUsername = view.findViewById(R.id.edt_user_name);
+		edtPassword = view.findViewById(R.id.edt_password);
 
 		Button btnLogin = view.findViewById(R.id.btn_login);
-
 		btnLogin.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View view)
 			{
-				String userName = edtUserName.getText().toString();
+				String userName = edtUsername.getText().toString();
 				String password = edtPassword.getText().toString();
 
 				if(CommonUtils.isEMailValid(userName))
@@ -55,6 +54,17 @@ public class LoginScreenFragment extends BaseFragment
 				{
 					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.txt_login_err_wrong_account), Toast.LENGTH_SHORT).show();
 				}
+			}
+		});
+
+		Button btnCancel = view.findViewById(R.id.btn_cancel);
+		btnCancel.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View view)
+			{
+				edtUsername.getText().clear();
+				edtPassword.getText().clear();
 			}
 		});
 	}

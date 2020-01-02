@@ -1,7 +1,6 @@
 package com.example.roombooking.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -93,7 +92,6 @@ public class QRCodeScannerFragment extends BaseFragment
 			public void receiveDetections(Detector.Detections<Barcode> detections)
 			{
 				final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-				Log.i("MyApp", "size = " + barcodes.size());
 				if (barcodes.size() != 0)
 				{
 					final String qrString = barcodes.valueAt(0).rawValue;
@@ -106,6 +104,17 @@ public class QRCodeScannerFragment extends BaseFragment
 								txtBarcodeValue.setText(barcodes.valueAt(0).rawValue);
 							else
 								txtBarcodeValue.setText(getActivity().getResources().getString(R.string.txt_no_valid_code));
+						}
+					});
+				}
+				else
+				{
+					txtBarcodeValue.post(new Runnable()
+					{
+						@Override
+						public void run()
+						{
+							txtBarcodeValue.setText(getActivity().getResources().getString(R.string.txt_no_valid_code));
 						}
 					});
 				}
