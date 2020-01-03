@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name">RoomBooking</string>
+    <string name="app_name" translatable="false">RoomBooking</string>
     <string name="fh_logo">fh_logo</string>
     <string name="user_example_fh_bielefeld_de">user.example@fh-bielefeld.de</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="cancel">Cancel</string>
     <string name="from">from</string>
     <string name="uni_name">University of Applied Sciences Bielefeld</string>
 
@@ -14,13 +11,28 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="username">Username</string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="profile">Profile</string>
+
+    <!-- Texts for buttons -->
     <string name="btn_txt_book">Book</string>
+    <string name="btn_txt_login">Login</string>
+    <string name="btn_txt_cancel">Cancel</string>
+
+    <!-- Texts for edit hint text -->
+    <string name="edt_txt_hint_username">Username</string>
+    <string name="edt_txt_hint_password">Password</string>
+    <string name="edt_txt_hint_room_name">Room name</string>
+    <string name="edt_txt_hint_reservation_date">Date of reservation</string>
+    <string name="edt_txt_hint_duration">Duration</string>
+
+    <!-- Texts for edit helper text -->
+    <string name="edt_txt_helper_room_name">This room will be reserved for you</string>
+    <string name="edt_txt_helper_reservation_date">dd/mm/yyyy</string>
+    <string name="edt_txt_helper_duration">Time in minutes</string>
 
     <!-- Texts for information -->
     <string name="txt_no_valid_code">No valid code detected</string>

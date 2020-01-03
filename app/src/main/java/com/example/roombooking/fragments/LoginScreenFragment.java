@@ -21,9 +21,6 @@ import com.example.roombooking.utils.CommonUtils;
 
 public class LoginScreenFragment extends BaseFragment
 {
-	private EditText edtUsername;
-	private EditText edtPassword;
-
 	@Override
 	protected int getLayoutContentID()
 	{
@@ -35,8 +32,8 @@ public class LoginScreenFragment extends BaseFragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		edtUsername = view.findViewById(R.id.edt_user_name);
-		edtPassword = view.findViewById(R.id.edt_password);
+		final EditText edtUsername = view.findViewById(R.id.edt_username);
+		final EditText edtPassword = view.findViewById(R.id.edt_password);
 
 		Button btnLogin = view.findViewById(R.id.btn_login);
 		btnLogin.setOnClickListener(new View.OnClickListener()
