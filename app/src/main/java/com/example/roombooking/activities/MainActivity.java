@@ -1,8 +1,12 @@
 package com.example.roombooking.activities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -10,6 +14,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.roombooking.R;
 import com.example.roombooking.fragments.QRCodeScannerFragment;
+import com.example.roombooking.manager.SharedPreferencesManager;
 
 public class MainActivity extends BaseActivity
 {
@@ -56,8 +61,38 @@ public class MainActivity extends BaseActivity
 		}
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionbar_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.action_logouts:
+				logout();
+				break;
+			default:
+				break;
+		}
+		return true;
+	}
+
 	private void openQRCodeScanner()
 	{
 		switchFragment(new QRCodeScannerFragment());
+	}
+
+	private void logout()
+	{
+		SharedPreferencesManager.getInstance(this).clearData();
+
+		startActivity(new Intent(this, LoginActivity.class));
+		finish();
 	}
 }

@@ -12,6 +12,9 @@
     <string name="title_notifications">Notifications</string>
     <string name="profile">Profile</string>
 
+    <!-- Texts for actionbar's menu -->
+    <string name="menu_logout">Logout</string>
+
     <!-- Texts for buttons -->
     <string name="btn_txt_book">Book</string>
     <string name="btn_txt_login">Login</string>
