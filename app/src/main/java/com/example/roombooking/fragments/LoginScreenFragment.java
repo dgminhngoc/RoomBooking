@@ -90,7 +90,7 @@ public class LoginScreenFragment extends BaseFragment
 		{
 			ServerDummy server = ServerDummy.getInstance();
 
-			return server.checkValidUser(userName, password) ? ServerDummy.LOGIN_TOKEN : null;
+			return server.checkValidUser(userName, password) ? ServerDummy.USER_TOKEN : null;
 		}
 
 		@Override

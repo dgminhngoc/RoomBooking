@@ -57,6 +57,8 @@ public class QRCodeScannerFragment extends BaseFragment
 
 	private void init()
 	{
+		roomName = null;
+
 		cameraSource = new CameraSource.Builder(getActivity(), barcodeDetector)
 				.setAutoFocusEnabled(true)
 				.build();

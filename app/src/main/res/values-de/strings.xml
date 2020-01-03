@@ -1,0 +1,33 @@
+<resources>
+    <string name="uni_name_present">von</string>
+    <string name="uni_name">Fachhochschule Bielefeld</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
+
+    <!-- Texts for buttons -->
+    <string name="btn_txt_book">Buchen</string>
+    <string name="btn_txt_login">Einloggen</string>
+    <string name="btn_txt_cancel">Unterbrechen</string>
+
+    <!-- Texts for edit hint text -->
+    <string name="edt_txt_hint_username">Benutzername</string>
+    <string name="edt_txt_hint_password">Passwort</string>
+    <string name="edt_txt_hint_room_name">Raumname</string>
+    <string name="edt_txt_hint_reservation_date">Datum der Reservierung</string>
+    <string name="edt_txt_hint_duration">Dauer</string>
+
+    <!-- Texts for edit helper text -->
+    <string name="edt_txt_helper_room_name">Dieser Raum wird für Sie reserviert</string>
+    <string name="edt_txt_helper_reservation_date">dd/mm/jjjj</string>
+    <string name="edt_txt_helper_duration">Zeit in Minuten</string>
+
+    <!-- Texts for information -->
+    <string name="txt_no_valid_code">Kein gültiger Code erkannt</string>
+    <string name="txt_login_err_wrong_account">Benutzername oder Passwort ist falsch !!!</string>
+</resources>

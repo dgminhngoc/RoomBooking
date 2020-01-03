@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:hint="@string/edt_txt_hint_room_name"
-            android:text="FH101"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 

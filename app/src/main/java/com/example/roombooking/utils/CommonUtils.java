@@ -23,7 +23,7 @@ public class CommonUtils
 	 * @param emailAddress : the email address need to validate
 	 * @return : true if that email is valid, false if otherwise
 	 */
-	public static boolean isEMailValid (String emailAddress)
+	public static boolean isEMailValid(String emailAddress)
 	{
 		if (emailAddress != null && !emailAddress.isEmpty())
 		{
@@ -37,6 +37,15 @@ public class CommonUtils
 				return emailParts[1].equals(EMAIL_POSTFIX);
 			}
 			return false;
+		}
+		return false;
+	}
+
+	public static boolean isDateValid(String date)
+	{
+		if(date != null)
+		{
+
 		}
 		return false;
 	}

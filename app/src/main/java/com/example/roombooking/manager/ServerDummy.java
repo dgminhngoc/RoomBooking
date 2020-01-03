@@ -8,7 +8,7 @@ public class ServerDummy {
     private static ServerDummy instance = null;
     private HashMap<String, String> accounts;
 
-    public static final String LOGIN_TOKEN  = "login_token";
+    public static final String USER_TOKEN = "user_token";
 
     private ServerDummy(){
         accounts = new HashMap<>();
@@ -19,21 +19,27 @@ public class ServerDummy {
     }
 
     public static ServerDummy getInstance(){
-        System.out.println("Hello in SERVER DUMMY");
+//        System.out.println("Hello in SERVER DUMMY");
         if(ServerDummy.instance == null){
             ServerDummy.instance = new ServerDummy();
         }
         return ServerDummy.instance;
     }
 
-    public boolean checkValidUser(String user, String password)
+    public boolean checkValidUser(String username, String password)
     {
-        if(CommonUtils.isEMailValid(user))
+        if(CommonUtils.isEMailValid(username))
         {
-          return accounts.containsKey(user) && accounts.get(user).equals(password);
+          return accounts.containsKey(username) && accounts.get(username).equals(password);
         }
         return false;
     }
 
-
+    public boolean checkRoomAvailability(String userToken, String date)
+    {
+        if(date != null)
+            return date.equals("30/02/2020");
+        else
+            return false;
+    }
 }
