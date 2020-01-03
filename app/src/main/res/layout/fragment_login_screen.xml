@@ -32,7 +32,7 @@
             app:layout_constraintLeft_toRightOf="@id/guideline_vertical_1"
             app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2"
             app:layout_constraintBottom_toTopOf="@id/txt_app_name"
-            app:srcCompat="@mipmap/ic_logo"
+            app:srcCompat="@mipmap/ic_logo_colored"
             app:layout_constraintVertical_chainStyle="packed"/>
 
         <TextView

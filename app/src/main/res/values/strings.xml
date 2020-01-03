@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">RoomBooking</string>
     <string name="fh_logo" translatable="false">fh_logo</string>
     <string name="uni_name_present">from</string>
-    <string name="uni_name">University of Applied Sciences Bielefeld</string>
+    <string name="uni_name" translatable="false">FH BIELEFELD</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
