@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">RoomBooking</string>
-    <string name="fh_logo" translatable="false">fh_logo</string>
     <string name="uni_name_present">from</string>
     <string name="uni_name" translatable="false">FH BIELEFELD</string>
 
@@ -18,18 +17,20 @@
     <!-- Texts for buttons -->
     <string name="btn_txt_book">Book</string>
     <string name="btn_txt_login">Login</string>
-    <string name="btn_txt_cancel">Cancel</string>
+    <string name="btn_txt_cancel">Clear</string>
 
     <!-- Texts for edit hint text -->
     <string name="edt_txt_hint_username">Username</string>
     <string name="edt_txt_hint_password">Password</string>
     <string name="edt_txt_hint_room_name">Room name</string>
     <string name="edt_txt_hint_reservation_date">Date of reservation</string>
+    <string name="edt_txt_hint_start_time">Start time</string>
     <string name="edt_txt_hint_duration">Duration</string>
 
     <!-- Texts for edit helper text -->
     <string name="edt_txt_helper_room_name">This room will be reserved for you</string>
     <string name="edt_txt_helper_reservation_date">dd/mm/yyyy</string>
+    <string name="edt_txt_helper_start_time">hh:mm</string>
     <string name="edt_txt_helper_duration">Time in minutes</string>
 
     <!-- Texts for information -->

@@ -34,11 +34,10 @@ public class QRCodeScannerFragment extends BaseFragment
 
 	private String roomName;
 
-
 	@Override
 	protected int getLayoutContentID()
 	{
-		return R.layout.fragment_barcode_scanner;
+		return R.layout.fragment_qrcode_scanner;
 	}
 
 	@Override

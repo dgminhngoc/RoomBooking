@@ -27,8 +27,8 @@ public class CommonUtils
 	{
 		if (emailAddress != null && !emailAddress.isEmpty())
 		{
-			String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+			String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(emailAddress);
 
 			if(matcher.matches())
@@ -41,13 +41,9 @@ public class CommonUtils
 		return false;
 	}
 
-	public static boolean isDateValid(String date)
+	public static boolean isBookingTimeValid(long timeMillis)
 	{
-		if(date != null)
-		{
-
-		}
-		return false;
+		return timeMillis > System.currentTimeMillis();
 	}
 
 	/**

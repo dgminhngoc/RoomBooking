@@ -19,7 +19,6 @@ public class ServerDummy {
     }
 
     public static ServerDummy getInstance(){
-//        System.out.println("Hello in SERVER DUMMY");
         if(ServerDummy.instance == null){
             ServerDummy.instance = new ServerDummy();
         }
@@ -35,10 +34,10 @@ public class ServerDummy {
         return false;
     }
 
-    public boolean checkRoomAvailability(String userToken, String date)
+    public boolean checkRoomAvailability(String userToken, String date, String time, String duration)
     {
-        if(date != null)
-            return date.equals("30/02/2020");
+        if(date != null && time != null)
+            return date.equals("30/02/2020") && time.equals("12:00") && Integer.parseInt(duration) <= 3;
         else
             return false;
     }

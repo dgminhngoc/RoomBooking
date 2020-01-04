@@ -50,7 +50,6 @@ public class SwitchFragmentController
 		if (pFragmentManager != null) {
 			if (pFragmentManager.getBackStackEntryCount() >= 0) {
 				pFragmentManager.popBackStackImmediate();
-
 				getCurrentFragment(pFragmentManager).setDataBundle(dataBundle);
 			}
 		}
@@ -64,9 +63,9 @@ public class SwitchFragmentController
 	public static synchronized void doAddAnimation(FragmentTransaction pFragmentTransaction) {
 		if (pFragmentTransaction != null) {
 			pFragmentTransaction.setCustomAnimations(	R.anim.fragment_slide_left_enter,
-																	R.anim.fragment_slide_left_exit,
+																	R.anim.fragment_slide_right_exit,
 																	R.anim.fragment_slide_left_enter,
-																	R.anim.fragment_slide_left_exit);
+																	R.anim.fragment_slide_right_exit);
 		}
 	}
 
