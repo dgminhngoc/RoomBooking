@@ -95,9 +95,9 @@ public class CommonUtils
 		}
 	}
 
-	public static String getCurrentDate()
+	public static String getCurrentDateTime()
 	{
-		String curDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		String curDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 		return curDate;
 	}
 }

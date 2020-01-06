@@ -55,6 +55,10 @@ public class BookingFragment extends BaseFragment
 
 			Button btnBook = view.findViewById(R.id.btn_book);
 			btnBook.setOnClickListener(btnBookOnClickListener());
+
+			String[] currentDateTime = CommonUtils.getCurrentDateTime().split(" ");
+			edtDate.setText(currentDateTime[0]);
+			edtStartTime.setText(currentDateTime[1]);
 		}
 	}
 

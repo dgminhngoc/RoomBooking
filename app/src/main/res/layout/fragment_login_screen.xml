@@ -94,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:hint="@string/edt_txt_hint_password"
+                android:nextFocusDown="@id/btn_login"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +118,7 @@
             android:layout_marginRight="10dp"
             app:layout_constraintRight_toLeftOf="@id/btn_login"
             app:layout_constraintTop_toBottomOf="@id/inLayout_password"
-            android:text="@string/btn_txt_cancel" />
+            android:text="@string/btn_txt_clear" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

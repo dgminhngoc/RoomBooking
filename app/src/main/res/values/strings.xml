@@ -17,7 +17,8 @@
     <!-- Texts for buttons -->
     <string name="btn_txt_book">Book</string>
     <string name="btn_txt_login">Login</string>
-    <string name="btn_txt_cancel">Clear</string>
+    <string name="btn_txt_clear">Clear</string>
+    <string name="btn_txt_cancel">Cancel</string>
 
     <!-- Texts for edit hint text -->
     <string name="edt_txt_hint_username">Username</string>
