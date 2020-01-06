@@ -191,9 +191,29 @@ public class BookingFragment extends BaseFragment
 				.show();
 	}
 
-	private void showAlternative(){
-
-	}
+//	private void showAlternative(final String roomName){
+//		String msg = getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative_msg) + " " + roomName;
+//		new MaterialAlertDialogBuilder(getActivity())
+//				.setTitle(getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative))
+//				.setMessage(msg)
+//				.setPositiveButton(getActivity().getResources().getString(R.string.btn_txt_book), new DialogInterface.OnClickListener()
+//				{
+//					@Override
+//					public void onClick(DialogInterface dialogInterface, int i)
+//					{
+//						edtRoomName.setText(roomName);
+//					}
+//				})
+//				.setNegativeButton(getActivity().getResources().getString(R.string.btn_txt_cancel), new DialogInterface.OnClickListener()
+//				{
+//					@Override
+//					public void onClick(DialogInterface dialogInterface, int i)
+//					{
+//						dialogInterface.dismiss();
+//					}
+//				})
+//				.show();
+//	}
 
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -225,7 +245,6 @@ public class BookingFragment extends BaseFragment
 
 			if (bookingFragment != null)
 			{
-//				bookingFragment.informBookingSucceed();
 				switch (result)
 				{
 					case ConstRequestResult.RE_AVAILABLE:
@@ -233,7 +252,7 @@ public class BookingFragment extends BaseFragment
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
-						bookingFragment.showAlternative();
+//						bookingFragment.showAlternative(ServerDummy.rooms[1].getName());
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();

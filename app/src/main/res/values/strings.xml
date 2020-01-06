@@ -39,7 +39,7 @@
     <string name="txt_romm_reserve_duration_too_long">Duration is too long</string>
 
     <!-- Texts for dialog -->
-    <string name="dialog_txt_room_reserve_success_title" translatable="false">Tada...lala</string>
+    <string name="dialog_txt_room_reserve_success_title" translatable="false">Succeed</string>
     <string name="txt_room_dialog_txt_room_reserve_success_msg">The room is reserved for you!</string>
 
 </resources>
