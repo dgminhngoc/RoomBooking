@@ -10,7 +10,7 @@
     <string name="btn_txt_clear">Löschen</string>
     <string name="btn_txt_cancel">Abbrechen</string>
     <string name="btn_txt_exit">Beenden</string>
-    <string name="btn_txt_book_other_room">Anderer Room buchen</string>
+    <string name="btn_txt_book_other_room">Anderer Raum buchen</string>
 
     <!-- Texts for edit hint text -->
     <string name="edt_txt_hint_username">Benutzername</string>
@@ -32,10 +32,10 @@
     <string name="txt_err_no_connection">Internetverbindung ist nicht verfügbar</string>
 
     <!-- Texts for reservation result -->
-    <string name="txt_room_reserve_success">Reservierung ist erfolg !</string>
+    <string name="txt_room_reserve_success">Der Raum ist Ihnen reserviert!</string>
     <string name="txt_romm_reserve_not_available">Der Raum ist nicht verfügbar</string>
     <string name="txt_romm_reserve_duration_too_long">Der Dauer ist zu lang</string>
 
     <!-- Texts for dialog -->
-    <string name="txt_room_dialog_txt_room_reserve_success_msg">The room is reserved for you!</string>
+    <string name="txt_room_dialog_txt_room_reserve_success_msg">Der Raum ist Ihnen reserviert!</string>
 </resources>
