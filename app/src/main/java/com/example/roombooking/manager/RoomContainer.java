@@ -58,8 +58,6 @@ public class RoomContainer {
                 }
             }
         }
-        System.out.println("HELLO");
-        System.out.println("HELLO ALTERNATIVE: " + alternativeRooms);
         return alternativeRooms;
     }
 
