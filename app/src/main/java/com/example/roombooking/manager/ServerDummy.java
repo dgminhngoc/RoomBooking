@@ -67,12 +67,12 @@ public class ServerDummy
 			}
 		}
 
-		if (timeInMillis > (System.currentTimeMillis() + 1000000))
+		if (timeInMillis > (System.currentTimeMillis() + 10000))
 		{
 			if (duration > 180)
 				return ConstRequestResult.RE_ERR_DURATION_TOO_LONG;
 			else
-				return ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE;
+				return ConstRequestResult.RE_AVAILABLE;
 		}
 		else
 			return ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE;
