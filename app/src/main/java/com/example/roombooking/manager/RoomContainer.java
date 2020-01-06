@@ -2,9 +2,12 @@ package com.example.roombooking.manager;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class RoomContainer {
 
@@ -14,7 +17,23 @@ public class RoomContainer {
         // empty
     }
 
-    public static  final void bookRoom(Room room, int time, int duration){
+    public static final List<String> showAlternatives(Room notAvaibleRoom, int time, int duration){
+        Set s = container.keySet();
+        System.out.println(s);
+
+        List<String> alternativeRooms = new ArrayList<String>();
+
+        for(int i = 0; i < ServerDummy.rooms.length; i++){
+            if (!ServerDummy.rooms[i].name.equals(notAvaibleRoom.name)){
+                if(checkTimeSlotFree(ServerDummy.rooms[i], time, duration)){
+                    alternativeRooms.add(ServerDummy.rooms[i].name);
+                }
+            }
+        }
+        return alternativeRooms;
+    }
+
+    public static final void bookRoom(Room room, int time, int duration){
 
         if (checkTimeSlotFree(room, time, duration)){
             int endTime = time;
@@ -37,6 +56,7 @@ public class RoomContainer {
         }
         else{
             System.out.println("Raum nicht frei!");
+            showAlternatives(room, time, duration);
         }
     }
 
