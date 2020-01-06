@@ -1,5 +1,6 @@
 package com.example.roombooking.fragments;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.roombooking.manager.SharedPreferencesManager;
 import com.example.roombooking.utils.CommonUtils;
 import com.example.roombooking.utils.ConstKeyBundle;
 import com.example.roombooking.utils.ConstRequestResult;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -165,6 +167,30 @@ public class BookingFragment extends BaseFragment
 		roomBookingTask.execute();
 	}
 
+	private void informBookingSucceed()
+	{
+		new MaterialAlertDialogBuilder(getActivity())
+				.setTitle(getActivity().getResources().getString(R.string.dialog_txt_room_reserve_success_title))
+				.setMessage(getActivity().getResources().getString(R.string.txt_room_reserve_success))
+				.setPositiveButton(getActivity().getResources().getString(R.string.btn_txt_book_other_room), new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i)
+					{
+						onBackPressed();
+					}
+				})
+				.setNegativeButton(getActivity().getResources().getString(R.string.btn_txt_exit), new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i)
+					{
+						getActivity().finish();
+					}
+				})
+				.show();
+	}
+
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
 	{
 		private String userToken;
@@ -193,13 +219,13 @@ public class BookingFragment extends BaseFragment
 		{
 			super.onPostExecute(result);
 
-			if(bookingFragment != null)
+			if (bookingFragment != null)
 			{
+//				bookingFragment.informBookingSucceed();
 				switch (result)
 				{
 					case ConstRequestResult.RE_AVAILABLE:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_room_reserve_success), Toast.LENGTH_SHORT).show();
-						bookingFragment.onBackPressed();
+						bookingFragment.informBookingSucceed();
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();

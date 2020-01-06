@@ -11,6 +11,8 @@
     <string name="btn_txt_login">Login</string>
     <string name="btn_txt_clear">Clear</string>
     <string name="btn_txt_cancel">Cancel</string>
+    <string name="btn_txt_exit">Exit</string>
+    <string name="btn_txt_book_other_room">Book other room</string>
 
     <!-- Texts for edit hint text -->
     <string name="edt_txt_hint_username">Username</string>
@@ -32,7 +34,12 @@
     <string name="txt_err_no_connection">Internet connection is unavailable</string>
 
     <!-- Texts for reservation result -->
-    <string name="txt_room_reserve_success">Reservation succeeded !</string>
+    <string name="txt_room_reserve_success">The room is reserved for you!</string>
     <string name="txt_romm_reserve_not_available">Room is not available</string>
     <string name="txt_romm_reserve_duration_too_long">Duration is too long</string>
+
+    <!-- Texts for dialog -->
+    <string name="dialog_txt_room_reserve_success_title" translatable="false">Tada...lala</string>
+    <string name="txt_room_dialog_txt_room_reserve_success_msg">The room is reserved for you!</string>
+
 </resources>
