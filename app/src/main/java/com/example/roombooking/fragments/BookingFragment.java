@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
-import com.example.roombooking.manager.RoomContainer;
 import com.example.roombooking.manager.ServerDummy;
 import com.example.roombooking.manager.SharedPreferencesManager;
 import com.example.roombooking.utils.CommonUtils;
@@ -24,7 +23,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class BookingFragment extends BaseFragment
 {
@@ -254,8 +252,7 @@ public class BookingFragment extends BaseFragment
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
-						List myList = RoomContainer.showAlternatives(roomName);
-						bookingFragment.showAlternative(myList.get(0).toString());
+//						bookingFragment.showAlternative(ServerDummy.rooms[1].getName());
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();
