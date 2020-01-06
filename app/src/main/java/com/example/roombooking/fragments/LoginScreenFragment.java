@@ -49,7 +49,7 @@ public class LoginScreenFragment extends BaseFragment
 				}
 				else
 				{
-					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.txt_login_err_wrong_account), Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.txt_err_login_wrong_account), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -109,7 +109,7 @@ public class LoginScreenFragment extends BaseFragment
 				}
 				else
 				{
-					Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.txt_login_err_wrong_account), Toast.LENGTH_SHORT).show();
+					Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.txt_err_login_wrong_account), Toast.LENGTH_SHORT).show();
 				}
 
 				fragment = null;

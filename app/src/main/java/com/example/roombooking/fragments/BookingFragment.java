@@ -5,13 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
+import com.example.roombooking.manager.ServerDummy;
 import com.example.roombooking.manager.SharedPreferencesManager;
+import com.example.roombooking.utils.CommonUtils;
 import com.example.roombooking.utils.ConstKeyBundle;
+import com.example.roombooking.utils.ConstRequestResult;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BookingFragment extends BaseFragment
 {
@@ -69,6 +77,12 @@ public class BookingFragment extends BaseFragment
 			@Override
 			public void onClick(View view)
 			{
+				if(!CommonUtils.isNetworkAvailable(getActivity()))
+				{
+					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.txt_err_no_connection), Toast.LENGTH_SHORT).show();
+					return;
+				}
+
 				String userToken = SharedPreferencesManager.getInstance(getActivity()).getUserToken();
 				String date = edtDate.getText().toString();
 				String startTime = edtStartTime.getText().toString();
@@ -79,15 +93,36 @@ public class BookingFragment extends BaseFragment
 					&& startTime != null
 					&& duration != null)
 				{
+					SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+					String dateInString = date;
+					try
+					{
+						Date mdate = formatter.parse(dateInString);
+						String[] mStartTime = startTime.split(":");
+						long dateInMillis = mdate.getTime() + (Integer.parseInt(mStartTime[0])*60 + Integer.parseInt(mStartTime[1])*60*1000);
+						if(!CommonUtils.isStartTimeValid(dateInMillis))
+						{
+							Toast.makeText(getActivity(), "Invalid start time", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						else
+						{
+							sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration));
+						}
 
+					} catch (ParseException e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		};
 	}
 
-	private void sendBookingRequestToServer()
+	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration)
 	{
-
+		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration);
+		roomBookingTask.execute();
 	}
 
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
@@ -97,7 +132,7 @@ public class BookingFragment extends BaseFragment
 		private long startTimeInMillis;
 		private int duration;
 
-		RoomBookingTask(String userToken, BookingFragment bookingFragment, long startTimeInMillis, int duration)
+		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration)
 		{
 			this.userToken = userToken;
 			this.bookingFragment = bookingFragment;
@@ -108,13 +143,32 @@ public class BookingFragment extends BaseFragment
 		@Override
 		protected Integer doInBackground(Void... voids)
 		{
-			return null;
+			return ServerDummy.getInstance().checkRoomAvailability(userToken, startTimeInMillis, duration);
 		}
 
 		@Override
-		protected void onPostExecute(Integer integer)
+		protected void onPostExecute(Integer result)
 		{
-			super.onPostExecute(integer);
+			super.onPostExecute(result);
+
+			if(bookingFragment != null)
+			{
+				switch (result)
+				{
+					case ConstRequestResult.RE_AVAILABLE:
+						Toast.makeText(bookingFragment.getActivity(), "OK", Toast.LENGTH_SHORT).show();
+						bookingFragment.onBackPressed();
+						break;
+					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
+						Toast.makeText(bookingFragment.getActivity(), "Room is not available", Toast.LENGTH_SHORT).show();
+						break;
+					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
+						Toast.makeText(bookingFragment.getActivity(), "Duration is too long", Toast.LENGTH_SHORT).show();
+						break;
+					default:
+						break;
+				}
+			}
 		}
 	}
 }

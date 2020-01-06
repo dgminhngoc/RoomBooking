@@ -130,6 +130,7 @@ public class QRCodeScannerFragment extends BaseFragment
 						public void run()
 						{
 							txtBarcodeValue.setText(getActivity().getResources().getString(R.string.txt_no_valid_code));
+							roomName = null;
 						}
 					});
 				}

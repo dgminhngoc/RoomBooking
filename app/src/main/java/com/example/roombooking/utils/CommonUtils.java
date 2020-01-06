@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -41,7 +40,7 @@ public class CommonUtils
 		return false;
 	}
 
-	public static boolean isBookingTimeValid(long timeMillis)
+	public static boolean isStartTimeValid(long timeMillis)
 	{
 		return timeMillis > System.currentTimeMillis();
 	}
@@ -62,7 +61,7 @@ public class CommonUtils
 	 * @param context
 	 * @return : true if connected, false if otherwise
 	 */
-	public static boolean checkIfNetworkAvailable (Context context)
+	public static boolean isNetworkAvailable(Context context)
 	{
 		ConnectivityManager connectivityManager
 				= (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

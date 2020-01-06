@@ -33,5 +33,7 @@
 
     <!-- Texts for information -->
     <string name="txt_no_valid_code">Kein gültiger Code erkannt</string>
-    <string name="txt_login_err_wrong_account">Benutzername oder Passwort ist falsch !!!</string>
+    <string name="txt_err_login_wrong_account">Benutzername oder Passwort ist falsch !!!</string>
+    <string name="txt_err_no_connection">Internetverbindung ist nicht verfügbar</string>
+
 </resources>
