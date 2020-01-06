@@ -30,10 +30,6 @@ public class QRCodeScannerFragment extends BaseFragment
 
 	private TextView txtBarcodeValue;
 
-	private Button btnBook;
-
-	private String roomName;
-
 	@Override
 	protected int getLayoutContentID()
 	{
@@ -47,8 +43,6 @@ public class QRCodeScannerFragment extends BaseFragment
 
 		surfaceView = view.findViewById(R.id.surface_view);
 		txtBarcodeValue = view.findViewById(R.id.txt_barcode_value);
-		btnBook = view.findViewById(R.id.btn_book);
-
 		barcodeDetector = new BarcodeDetector.Builder(getActivity())
 				.setBarcodeFormats(Barcode.QR_CODE	)
 				.build();
@@ -56,8 +50,6 @@ public class QRCodeScannerFragment extends BaseFragment
 
 	private void init()
 	{
-		roomName = null;
-
 		cameraSource = new CameraSource.Builder(getActivity(), barcodeDetector)
 				.setAutoFocusEnabled(true)
 				.build();
@@ -111,13 +103,11 @@ public class QRCodeScannerFragment extends BaseFragment
 						{
 							if(CommonUtils.isQRCodeValid(qrString))
 							{
-								txtBarcodeValue.setText(qrString);
-								roomName = qrString;
+								bookRoom(qrString);
 							}
 							else
 							{
 								txtBarcodeValue.setText(getActivity().getResources().getString(R.string.txt_no_valid_code));
-								roomName = null;
 							}
 						}
 					});
@@ -130,14 +120,18 @@ public class QRCodeScannerFragment extends BaseFragment
 						public void run()
 						{
 							txtBarcodeValue.setText(getActivity().getResources().getString(R.string.txt_no_valid_code));
-							roomName = null;
 						}
 					});
 				}
 			}
 		});
+	}
 
-		btnBook.setOnClickListener(btnBookOnclickListener());
+	private void bookRoom(String roomName)
+	{
+		Bundle dataBundle = new Bundle();
+		dataBundle.putString(ConstKeyBundle.KEY_ROOM_NAME, roomName);
+		switchFragment(new BookingFragment(), dataBundle);
 	}
 
 	@Override
@@ -152,26 +146,5 @@ public class QRCodeScannerFragment extends BaseFragment
 	{
 		super.onResume();
 		init();
-	}
-
-	private View.OnClickListener btnBookOnclickListener()
-	{
-		return new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				if(roomName != null)
-				{
-					Bundle dataBundle = new Bundle();
-					dataBundle.putString(ConstKeyBundle.KEY_ROOM_NAME, roomName);
-					switchFragment(new BookingFragment(), dataBundle);
-				}
-				else
-				{
-					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.txt_no_valid_code), Toast.LENGTH_SHORT).show();
-				}
-			}
-		};
 	}
 }

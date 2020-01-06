@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,4 +95,9 @@ public class CommonUtils
 		}
 	}
 
+	public static String getCurrentDate()
+	{
+		String curDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		return curDate;
+	}
 }
