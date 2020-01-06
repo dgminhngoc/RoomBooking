@@ -148,7 +148,7 @@ public class BookingFragment extends BaseFragment
 						Date mdate = formatter.parse(dateInString);
 						String[] mStartTime = startTime.split(":");
 						long dateInMillis = mdate.getTime() + (Integer.parseInt(mStartTime[0])*60 + Integer.parseInt(mStartTime[1])*60*1000);
-						if(!CommonUtils.isStartTimeValid(dateInMillis))
+						if(false)//!CommonUtils.isStartTimeValid(dateInMillis))
 						{
 							Toast.makeText(getActivity(), "Invalid start time", Toast.LENGTH_SHORT).show();
 							return;

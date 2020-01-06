@@ -1,5 +1,7 @@
 package com.example.roombooking.manager;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.roombooking.utils.CommonUtils;
@@ -53,7 +55,16 @@ public class ServerDummy
 	{
 
 		for(int i = 0; i < rooms.length; i++){
+			Log.i("Rooms", rooms[i].name);
+			System.out.println("FHATime"+timeInMillis);
+			System.out.println("FHAdur"+duration);
 			System.out.println(rooms[i].name);
+			if(rooms[i].name.equals(roomName)){
+
+
+
+				//RoomContainer.bookRoom(rooms[i], 1200, duration);
+			}
 		}
 
 		if (timeInMillis > (System.currentTimeMillis() + 1000000))
