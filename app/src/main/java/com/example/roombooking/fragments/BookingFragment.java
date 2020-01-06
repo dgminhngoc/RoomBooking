@@ -30,7 +30,7 @@ public class BookingFragment extends BaseFragment
 	private EditText edtDate;
 	private EditText edtStartTime;
 	private EditText edtDuration;
-	public static final int BOOKING_LIMIT = 10;
+	public static final int BOOKING_LIMIT = 5;
 
 	public String [] getTime(){
 		String bookingTime = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
@@ -155,7 +155,7 @@ public class BookingFragment extends BaseFragment
 						}
 						else
 						{
-							sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration));
+							sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration), edtRoomName.getText().toString());
 						}
 
 					} catch (ParseException e)
@@ -167,9 +167,9 @@ public class BookingFragment extends BaseFragment
 		};
 	}
 
-	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration)
+	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration, String roomName)
 	{
-		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration);
+		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration, roomName);
 		roomBookingTask.execute();
 	}
 
@@ -179,19 +179,21 @@ public class BookingFragment extends BaseFragment
 		private BookingFragment bookingFragment;
 		private long startTimeInMillis;
 		private int duration;
+		private String roomName;
 
-		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration)
+		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration, String roomName)
 		{
 			this.userToken = userToken;
 			this.bookingFragment = bookingFragment;
 			this.startTimeInMillis = startTimeInMillis;
 			this.duration = duration;
+			this.roomName = roomName;
 		}
 
 		@Override
 		protected Integer doInBackground(Void... voids)
 		{
-			return ServerDummy.getInstance().checkRoomAvailability(userToken, startTimeInMillis, duration);
+			return ServerDummy.getInstance().checkRoomAvailability(userToken, startTimeInMillis, duration, roomName);
 		}
 
 		@Override

@@ -14,6 +14,14 @@ public class ServerDummy
 
 	public static final String USER_TOKEN = "user_token";
 
+	// Predefined room objects
+	public static final Room rooms [] = new Room[]{
+			new Room("FHA112"),
+			new Room("FHA113"),
+			new Room("FHA114"),
+			new Room("FHB110"),
+	};
+
 	private ServerDummy()
 	{
 		accounts = new HashMap<>();
@@ -41,8 +49,13 @@ public class ServerDummy
 		return false;
 	}
 
-	public int checkRoomAvailability(@NonNull String userToken, long timeInMillis, int duration)
+	public int checkRoomAvailability(@NonNull String userToken, long timeInMillis, int duration, String roomName)
 	{
+
+		for(int i = 0; i < rooms.length; i++){
+			System.out.println(rooms[i].name);
+		}
+
 		if (timeInMillis > (System.currentTimeMillis() + 1000000))
 		{
 			if (duration > 180)
