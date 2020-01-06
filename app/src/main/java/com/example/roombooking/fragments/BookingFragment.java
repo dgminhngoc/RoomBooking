@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
+import com.example.roombooking.manager.RoomContainer;
 import com.example.roombooking.manager.ServerDummy;
 import com.example.roombooking.manager.SharedPreferencesManager;
 import com.example.roombooking.utils.CommonUtils;
@@ -23,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class BookingFragment extends BaseFragment
 {
@@ -191,29 +193,29 @@ public class BookingFragment extends BaseFragment
 				.show();
 	}
 
-//	private void showAlternative(final String roomName){
-//		String msg = getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative_msg) + " " + roomName;
-//		new MaterialAlertDialogBuilder(getActivity())
-//				.setTitle(getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative))
-//				.setMessage(msg)
-//				.setPositiveButton(getActivity().getResources().getString(R.string.btn_txt_book), new DialogInterface.OnClickListener()
-//				{
-//					@Override
-//					public void onClick(DialogInterface dialogInterface, int i)
-//					{
-//						edtRoomName.setText(roomName);
-//					}
-//				})
-//				.setNegativeButton(getActivity().getResources().getString(R.string.btn_txt_cancel), new DialogInterface.OnClickListener()
-//				{
-//					@Override
-//					public void onClick(DialogInterface dialogInterface, int i)
-//					{
-//						dialogInterface.dismiss();
-//					}
-//				})
-//				.show();
-//	}
+	private void showAlternative(final String roomName){
+		String msg = getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative_msg) + " " + roomName;
+		new MaterialAlertDialogBuilder(getActivity())
+				.setTitle(getActivity().getResources().getString(R.string.dialog_txt_room_reserve_success_title))
+				.setMessage(msg)
+				.setPositiveButton(getActivity().getResources().getString(R.string.btn_txt_book), new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i)
+					{
+						edtRoomName.setText(roomName);
+					}
+				})
+				.setNegativeButton(getActivity().getResources().getString(R.string.btn_txt_cancel), new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i)
+					{
+						dialogInterface.dismiss();
+					}
+				})
+				.show();
+	}
 
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -252,7 +254,8 @@ public class BookingFragment extends BaseFragment
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
-//						bookingFragment.showAlternative(ServerDummy.rooms[1].getName());
+						List myList = RoomContainer.showAlternatives(roomName);
+						bookingFragment.showAlternative(myList.get(0).toString());
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();

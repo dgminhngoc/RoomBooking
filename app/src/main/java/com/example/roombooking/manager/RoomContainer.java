@@ -17,23 +17,54 @@ public class RoomContainer {
         // empty
     }
 
-    public static final List<String> showAlternatives(Room notAvaiableRoom, int time, int duration){
+    public static final List<String> showAlternatives(String roomName){
         Set s = container.keySet();
-        System.out.println(s);
+
+        int myObjIndex = -1;
+        for (int i = 0; i < ServerDummy.rooms.length; i++){
+            if (ServerDummy.rooms[i].name.equals(roomName)) {
+                myObjIndex = i;
+            }
+        }
+
+        Map a = container.get(ServerDummy.rooms[myObjIndex]);
+        int myValue = -1;
+        for(Object value : a.values()){
+            String strTemp = value.toString();
+            int intTemp = Integer.parseInt(strTemp);
+            if (intTemp == 0 || intTemp == -1){
+                // nothing
+            }else{
+                String myk = value.toString();
+                myValue = Integer.parseInt(myk);
+            }
+        }
+
+        int myKey = -1;
+        for (Map.Entry<Integer, Integer> entry : ServerDummy.rooms[myObjIndex].dateContainer.entrySet()) {
+            if (entry.getValue().equals(myValue)) {
+                myKey = entry.getKey();
+            }
+        }
 
         List<String> alternativeRooms = new ArrayList<String>();
 
-        for(int i = 0; i < ServerDummy.rooms.length; i++){
-            if (!ServerDummy.rooms[i].name.equals(notAvaiableRoom.name)){
-                if(checkTimeSlotFree(ServerDummy.rooms[i], time, duration)){
+        for (int i = 0; i < ServerDummy.rooms.length; i++){
+            if (ServerDummy.rooms[i].name.equals(roomName)) {
+                // nothing
+            }else{
+                if(checkTimeSlotFree(ServerDummy.rooms[i], myKey, myValue)){
                     alternativeRooms.add(ServerDummy.rooms[i].name);
                 }
             }
         }
+        System.out.println("HELLO");
+        System.out.println("HELLO ALTERNATIVE: " + alternativeRooms);
         return alternativeRooms;
     }
 
     public static final void bookRoom(Room room, int time, int duration){
+        room.dateContainer.put(time, duration);
         int endTime = time;
         endTime += (100 * (duration / 60)) + (duration % 60);
 
@@ -59,7 +90,7 @@ public class RoomContainer {
             return false;
         }
         else{
-            room.dateContainer.put(time, duration);
+            // room.dateContainer.put(time, duration);
             return true;
         }
     }
