@@ -38,6 +38,4 @@
 
     <!-- Texts for dialog -->
     <string name="txt_room_dialog_txt_room_reserve_success_msg">Der Raum ist Ihnen reserviert!</string>
-    <string name="dialog_txt_room_reserve_alternative_msg">Room is not available, but this room is: </string>
-
 </resources>
