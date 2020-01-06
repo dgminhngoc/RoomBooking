@@ -34,7 +34,6 @@ public class RoomContainer {
     }
 
     public static final void bookRoom(Room room, int time, int duration){
-
         if (checkTimeSlotFree(room, time, duration)){
             int endTime = time;
             endTime += (100 * (duration / 60)) + (duration % 60);

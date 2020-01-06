@@ -40,6 +40,13 @@ public class ServerDummy
 		return ServerDummy.instance;
 	}
 
+
+	public boolean bookRoom(String roomName, String timeframe){
+
+
+		return false;
+	}
+
 	public boolean checkValidUser(String username, String password)
 	{
 		if (CommonUtils.isEMailValid(username))
@@ -49,23 +56,19 @@ public class ServerDummy
 		return false;
 	}
 
-	public int checkRoomAvailability(@NonNull String userToken, long timeInMillis, int duration, String roomName)
+	public int checkRoomAvailability(@NonNull String userToken, int timeInMillis, int duration, String roomName)
 	{
 
-		for(int i = 0; i < rooms.length; i++){
-			if(rooms[i].name.equals(roomName)){
-				// ...
+		for (Room r : ServerDummy.rooms){
+			if(r.name.equals(roomName)){
+				if(RoomContainer.checkTimeSlotFree(r, timeInMillis, duration)){
+					RoomContainer.bookRoom(r, timeInMillis, duration);
+					return ConstRequestResult.RE_AVAILABLE;
+				}else{
+					return ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE;
+				}
 			}
 		}
-
-		if (timeInMillis > (System.currentTimeMillis() + 10000))
-		{
-			if (duration > 180)
-				return ConstRequestResult.RE_ERR_DURATION_TOO_LONG;
-			else
-				return ConstRequestResult.RE_AVAILABLE;
-		}
-		else
-			return ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE;
+		return ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE;
 	}
 }

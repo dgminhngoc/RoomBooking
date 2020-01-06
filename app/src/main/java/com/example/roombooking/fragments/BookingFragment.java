@@ -150,8 +150,8 @@ public class BookingFragment extends BaseFragment
 						Date mdate = formatter.parse(dateInString);
 						String[] mStartTime = startTime.split(":");
 						long dateInMillis = mdate.getTime() + (Integer.parseInt(mStartTime[0])*60 + Integer.parseInt(mStartTime[1])*60*1000);
-
-						sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration), edtRoomName.getText().toString());
+						int finalTime = Integer.parseInt((mStartTime[0] + mStartTime[1]));
+						sendBookingRequestToServer(userToken, finalTime, Integer.parseInt(duration), edtRoomName.getText().toString());
 					} catch (ParseException e)
 					{
 						e.printStackTrace();
@@ -161,7 +161,7 @@ public class BookingFragment extends BaseFragment
 		};
 	}
 
-	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration, String roomName)
+	private void sendBookingRequestToServer(String userToken, int startTimeInMillis, int duration, String roomName)
 	{
 		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration, roomName);
 		roomBookingTask.execute();
@@ -191,15 +191,19 @@ public class BookingFragment extends BaseFragment
 				.show();
 	}
 
+	private void showAlternative(){
+		
+	}
+
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
 	{
 		private String userToken;
 		private BookingFragment bookingFragment;
-		private long startTimeInMillis;
+		private int startTimeInMillis;
 		private int duration;
 		private String roomName;
 
-		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration, String roomName)
+		RoomBookingTask(BookingFragment bookingFragment, String userToken, int startTimeInMillis, int duration, String roomName)
 		{
 			this.userToken = userToken;
 			this.bookingFragment = bookingFragment;
@@ -229,6 +233,7 @@ public class BookingFragment extends BaseFragment
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
+						bookingFragment.showAlternative();
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
 						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();
