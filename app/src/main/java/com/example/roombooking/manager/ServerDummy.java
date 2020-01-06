@@ -58,9 +58,9 @@ public class ServerDummy
 
 	public int checkRoomAvailability(@NonNull String userToken, int timeInMillis, int duration, String roomName)
 	{
-
 		for (Room r : ServerDummy.rooms){
 			if(r.name.equals(roomName)){
+
 				if(RoomContainer.checkTimeSlotFree(r, timeInMillis, duration)){
 					RoomContainer.bookRoom(r, timeInMillis, duration);
 					return ConstRequestResult.RE_AVAILABLE;
