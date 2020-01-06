@@ -52,6 +52,7 @@ public class RoomContainer {
                 }
             }
             System.out.println("Buchen erfolgreich");
+            container.put(room, room.dateContainer);
         }
         else{
             System.out.println("Raum nicht frei!");

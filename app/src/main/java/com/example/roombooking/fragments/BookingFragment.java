@@ -192,7 +192,7 @@ public class BookingFragment extends BaseFragment
 	}
 
 	private void showAlternative(){
-		
+
 	}
 
 	static class RoomBookingTask extends AsyncTask<Void, Void, Integer>
