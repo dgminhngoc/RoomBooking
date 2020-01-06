@@ -17,14 +17,14 @@ public class RoomContainer {
         // empty
     }
 
-    public static final List<String> showAlternatives(Room notAvaibleRoom, int time, int duration){
+    public static final List<String> showAlternatives(Room notAvaiableRoom, int time, int duration){
         Set s = container.keySet();
         System.out.println(s);
 
         List<String> alternativeRooms = new ArrayList<String>();
 
         for(int i = 0; i < ServerDummy.rooms.length; i++){
-            if (!ServerDummy.rooms[i].name.equals(notAvaibleRoom.name)){
+            if (!ServerDummy.rooms[i].name.equals(notAvaiableRoom.name)){
                 if(checkTimeSlotFree(ServerDummy.rooms[i], time, duration)){
                     alternativeRooms.add(ServerDummy.rooms[i].name);
                 }
@@ -34,30 +34,24 @@ public class RoomContainer {
     }
 
     public static final void bookRoom(Room room, int time, int duration){
-        if (checkTimeSlotFree(room, time, duration)){
-            int endTime = time;
-            endTime += (100 * (duration / 60)) + (duration % 60);
+        int endTime = time;
+        endTime += (100 * (duration / 60)) + (duration % 60);
 
-            for(int intervall = 30; time < endTime;){
-                time += intervall;
+        for(int intervall = 30; time < endTime;){
+            time += intervall;
 
-                if (time % 100 == 60){
-                    time += 40;
-                }
-
-                if (time == endTime){
-                    room.dateContainer.put(time, 0);
-                }else {
-                    room.dateContainer.put(time, -1);
-                }
+            if (time % 100 == 60){
+                time += 40;
             }
-            System.out.println("Buchen erfolgreich");
-            container.put(room, room.dateContainer);
+
+            if (time == endTime){
+                room.dateContainer.put(time, 0);
+            }else {
+                room.dateContainer.put(time, -1);
+            }
         }
-        else{
-            System.out.println("Raum nicht frei!");
-            showAlternatives(room, time, duration);
-        }
+        System.out.println("Buchen erfolgreich");
+        container.put(room, room.dateContainer);
     }
 
     public static final Boolean checkTimeSlotFree(Room room, int time, int duration){
@@ -73,10 +67,4 @@ public class RoomContainer {
     public static final Boolean checkRoomExists(Room room){
         if (container.containsKey(room)){ return true; } else { return false; }
     }
-    /*
-    public static void main(String [] args){
-        bookRoom(A01, 1200, 60);
-        bookRoom(A01, 1230, 30);
-    }
-     */
 }
