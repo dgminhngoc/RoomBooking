@@ -21,6 +21,10 @@ import com.example.roombooking.utils.CommonUtils;
 **/
 public abstract class BaseFragment extends Fragment implements Animation.AnimationListener
 {
+	protected static final int LAYOUT_ID_BLANK = -1;
+	
+	private Bundle dataBundle = null;
+
 	/**
 	 * The flag mark allow run background task when animation switch fragment end
 	 */
@@ -83,11 +87,19 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	}
 
 	/**
-	 * clear all fragment has been added to back stack of a it's fragemnt manager
+	 * clear all fragment has been added to back stack of a it's fragment manager
 	 */
 	public void clearFragment ()
 	{
 		SwitchFragmentController.clearFragment(getFragmentManager());
+	}
+
+	/**
+	 * clear all fragment has been added to back stack of a it's fragment manager
+	 */
+	public void clearFragment (FragmentManager fragmentManager)
+	{
+		SwitchFragmentController.clearFragment(fragmentManager);
 	}
 
 	@Override
@@ -149,7 +161,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	 * the method will be called when the animation switch screen end. Implements the background thread at here if
 	 * you want to start new background to do something when switch to this fragment
 	 */
-	protected void doControlRunBackgroundTask ()
+	private void doControlRunBackgroundTask ()
 	{
 		if (isReloadContent)
 		{
@@ -164,8 +176,6 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 
 	/**
 	 * get status have allow start background task
-	 *
-	 * @return
 	 */
 	public boolean isAllowRunBackgroundTask ()
 	{
@@ -174,8 +184,6 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 
 	/**
 	 * allow run background task
-	 *
-	 * @param isAllowRunBackgroundTask
 	 */
 	public void setAllowRunBackgroundTask (boolean isAllowRunBackgroundTask)
 	{
@@ -185,7 +193,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 	/**
 	 * method init background thread and start it if have
 	 */
-	protected void doInitialBackgroundThreadIfHave ()
+	private void doInitialBackgroundThreadIfHave ()
 	{
 	}
 
@@ -206,7 +214,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onCreateView(inflater, container, savedInstanceState);
 		if (contentView == null || isReloadContent)
 		{
-			if (getLayoutContentID() != -1)
+			if (getLayoutContentID() != LAYOUT_ID_BLANK)
 			{
 				contentView = (ViewGroup) inflater.inflate(getLayoutContentID(), container, false);
 			}
@@ -231,7 +239,7 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onDestroyView();
 	}
 
-	protected void destroyFragment ()
+	private void destroyFragment ()
 	{
 		CommonUtils.hideSoftKeyboard(getActivity());
 	}
@@ -244,9 +252,14 @@ public abstract class BaseFragment extends Fragment implements Animation.Animati
 		super.onDestroy();
 	}
 
-	public void onReceivedDataBundle(Bundle dataBundle)
+	public void setDataBundle(Bundle dataBundle)
 	{
-		// do nothing
+		this.dataBundle = dataBundle;
+	}
+
+	public Bundle getDataBundle()
+	{
+		return this.dataBundle;
 	}
 
 	/**

@@ -4,38 +4,58 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.example.roombooking.R;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommonUtils
 {
+	private static final String ROOM_PREFIX = "FH";
+	private static final String EMAIL_POSTFIX = "fh-bielefeld.de";
+
 	/**
 	 * do validate email address
 	 *
 	 * @param emailAddress : the email address need to validate
 	 * @return : true if that email is valid, false if otherwise
 	 */
-	public static boolean doValidateEmailAddress (String emailAddress)
+	public static boolean isEMailValid(String emailAddress)
 	{
 		if (emailAddress != null && !emailAddress.isEmpty())
 		{
-			String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+			String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(emailAddress);
 
-			return matcher.matches();
+			if(matcher.matches())
+			{
+				String[] emailParts = emailAddress.split("@");
+				return emailParts[1].equals(EMAIL_POSTFIX);
+			}
+			return false;
 		}
 		return false;
+	}
+
+	public static boolean isStartTimeValid(long timeMillis)
+	{
+		return timeMillis > System.currentTimeMillis();
+	}
+
+	/**
+	 * do validate email address
+	 *
+	 * @param qrString : the String generated from QRCode need to validate
+	 */
+	public static boolean isQRCodeValid(String qrString)
+	{
+		return qrString != null && qrString.length() > 2 && (qrString.substring(0, 2).equals(ROOM_PREFIX));
 	}
 
 	/**
@@ -44,7 +64,7 @@ public class CommonUtils
 	 * @param context
 	 * @return : true if connected, false if otherwise
 	 */
-	public static boolean checkIfNetworkAvailable (Context context)
+	public static boolean isNetworkAvailable(Context context)
 	{
 		ConnectivityManager connectivityManager
 				= (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -75,52 +95,9 @@ public class CommonUtils
 			activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		}
 	}
-	
-	/**
-	 * add animation when switch between fragments
-	 *
-	 * @param pFragmentTransaction
-	 */
-	public  static synchronized  void doAddAnimation(FragmentTransaction pFragmentTransaction) {
-		if (pFragmentTransaction != null) {
-			pFragmentTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,
-					R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit);
-		}
-	}
 
-	/**
-	 * pop fragment from backstack by tag
-	 * @param tag :
-	 */
-	public  static synchronized  void popToFragmentByTag(FragmentManager pFragmentManager, String tag) {
-		if (pFragmentManager != null && tag != null) {
-			pFragmentManager.popBackStackImmediate(tag, 0);
-		}
-	}
-
-	/**
-	 * clear all fragment has been existed on back stack
-	 * @param pFragmentManager
-	 */
-	public  static synchronized  void clearFragment(FragmentManager pFragmentManager) {
-		if (pFragmentManager != null) {
-			while (pFragmentManager.getBackStackEntryCount() > 0) {
-				pFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-			}
-		}
-	}
-
-	/**
-	 * get current fragment at a container view
-	 * @param pFragmentManager : the fragment manager manage fragments
-	 * @param containerViewID : the container contain fragments
-	 * @return : the current fragment , null if otherwise
-	 */
-	public  static synchronized Fragment getCurrentFragment(FragmentManager pFragmentManager, int containerViewID){
-		Fragment currentFragment = null;
-		if (pFragmentManager != null){
-			currentFragment = pFragmentManager.findFragmentById(containerViewID);
-		}
-		return currentFragment;
+	public static String getCurrentDateTime()
+	{
+		return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 	}
 }

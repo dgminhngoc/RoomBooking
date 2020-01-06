@@ -1,11 +1,11 @@
 package com.example.roombooking.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
 import com.example.roombooking.R;
+import com.example.roombooking.fragments.SplashScreenFragment;
 
 public class LoginActivity extends BaseActivity
 {
@@ -15,6 +15,6 @@ public class LoginActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		startActivity(new Intent(this, MainActivity.class));
+		switchFragment(new SplashScreenFragment());
 	}
 }

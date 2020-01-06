@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.87" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:id="@+id/inLayout_room_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColorHint="@android:color/holo_blue_dark"
+        app:boxStrokeColor="@android:color/holo_blue_dark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:helperTextEnabled="true"
+        app:helperText="@string/edt_txt_helper_room_name"
+        app:layout_constraintLeft_toRightOf="@id/guideline_vertical_1"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_room_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/edt_txt_hint_room_name"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:id="@+id/inLayout_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@android:color/holo_blue_dark"
+        app:boxStrokeColor="@android:color/holo_blue_dark"
+        app:helperTextEnabled="true"
+        app:helperText="@string/edt_txt_helper_reservation_date"
+        app:layout_constraintTop_toBottomOf="@id/inLayout_room_name"
+        app:layout_constraintLeft_toRightOf="@id/guideline_vertical_1"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edt_txt_hint_reservation_date"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:id="@+id/inLayout_start_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:textColorHint="@android:color/holo_blue_dark"
+        app:boxStrokeColor="@android:color/holo_blue_dark"
+        app:helperTextEnabled="true"
+        app:helperText="@string/edt_txt_helper_start_time"
+        app:layout_constraintTop_toBottomOf="@id/inLayout_date"
+        app:layout_constraintLeft_toRightOf="@id/guideline_vertical_1"
+        app:layout_constraintRight_toLeftOf="@id/inLayout_duration">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_start_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edt_txt_hint_start_time"
+            android:text="14:05"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:id="@+id/inLayout_duration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:textColorHint="@android:color/holo_blue_dark"
+        app:boxStrokeColor="@android:color/holo_blue_dark"
+        app:helperTextEnabled="true"
+        app:helperText="@string/edt_txt_helper_duration"
+        app:layout_constraintTop_toBottomOf="@id/inLayout_date"
+        app:layout_constraintLeft_toRightOf="@id/inLayout_start_time"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edt_txt_hint_duration"
+            android:text="120"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button"
+        android:id="@+id/btn_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2"
+        app:layout_constraintTop_toBottomOf="@id/inLayout_duration"
+        android:text="@string/btn_txt_book" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toLeftOf="@id/btn_book"
+        app:layout_constraintTop_toBottomOf="@id/inLayout_duration"
+        android:text="@string/btn_txt_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

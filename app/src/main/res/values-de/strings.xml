@@ -1,0 +1,43 @@
+<resources>
+    <string name="uni_name_present">von</string>
+
+    <!-- Texts for actionbar's menu -->
+    <string name="menu_logout">Ausloggen</string>
+
+    <!-- Texts for buttons -->
+    <string name="btn_txt_book">Buchen</string>
+    <string name="btn_txt_login">Einloggen</string>
+    <string name="btn_txt_clear">Löschen</string>
+    <string name="btn_txt_cancel">Abbrechen</string>
+    <string name="btn_txt_exit">Beenden</string>
+    <string name="btn_txt_book_other_room">Anderer Raum buchen</string>
+
+    <!-- Texts for edit hint text -->
+    <string name="edt_txt_hint_username">Benutzername</string>
+    <string name="edt_txt_hint_password">Passwort</string>
+    <string name="edt_txt_hint_room_name">Raumname</string>
+    <string name="edt_txt_hint_reservation_date">Datum der Reservierung</string>
+    <string name="edt_txt_hint_start_time">Startzeit</string>
+    <string name="edt_txt_hint_duration">Dauer</string>
+
+    <!-- Texts for edit helper text -->
+    <string name="edt_txt_helper_room_name">Dieser Raum wird für Sie reserviert</string>
+    <string name="edt_txt_helper_reservation_date">dd/mm/jjjj</string>
+    <string name="edt_txt_helper_start_time">ss:mm</string>
+    <string name="edt_txt_helper_duration">Zeit in Minuten</string>
+
+    <!-- Texts for information -->
+    <string name="txt_no_valid_code">Kein gültiger Code erkannt</string>
+    <string name="txt_err_login_wrong_account">Benutzername oder Passwort ist falsch !!!</string>
+    <string name="txt_err_no_connection">Internetverbindung ist nicht verfügbar</string>
+
+    <!-- Texts for reservation result -->
+    <string name="txt_room_reserve_success">Der Raum ist Ihnen reserviert!</string>
+    <string name="txt_romm_reserve_not_available">Der Raum ist nicht verfügbar</string>
+    <string name="txt_romm_reserve_duration_too_long">Der Dauer ist zu lang</string>
+
+    <!-- Texts for dialog -->
+    <string name="txt_room_dialog_txt_room_reserve_success_msg">Der Raum ist Ihnen reserviert!</string>
+    <string name="dialog_txt_room_reserve_alternative_msg">Room is not available, but this room is: </string>
+
+</resources>
