@@ -63,7 +63,7 @@ public class ServerDummy
 
 
 
-				//RoomContainer.bookRoom(rooms[i], 1200, duration);
+				RoomContainer.bookRoom(rooms[i], 1200, duration);
 			}
 		}
 
