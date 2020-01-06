@@ -97,7 +97,7 @@ public class BookingFragment extends BaseFragment
 		String strMinute;
 
 		if (intMinute < 10){
-			strMinute = "0" + Integer.toString(intMinute);
+			strMinute = "0" + intMinute;
 		}else{
 			strMinute = Integer.toString(intMinute);
 		}
@@ -148,16 +148,8 @@ public class BookingFragment extends BaseFragment
 						Date mdate = formatter.parse(dateInString);
 						String[] mStartTime = startTime.split(":");
 						long dateInMillis = mdate.getTime() + (Integer.parseInt(mStartTime[0])*60 + Integer.parseInt(mStartTime[1])*60*1000);
-						if(false)//!CommonUtils.isStartTimeValid(dateInMillis))
-						{
-							Toast.makeText(getActivity(), "Invalid start time", Toast.LENGTH_SHORT).show();
-							return;
-						}
-						else
-						{
-							sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration), edtRoomName.getText().toString());
-						}
 
+						sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration), edtRoomName.getText().toString());
 					} catch (ParseException e)
 					{
 						e.printStackTrace();
