@@ -19,6 +19,7 @@ import com.example.roombooking.utils.ConstRequestResult;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class BookingFragment extends BaseFragment
@@ -27,6 +28,7 @@ public class BookingFragment extends BaseFragment
 	private EditText edtDate;
 	private EditText edtStartTime;
 	private EditText edtDuration;
+	public static final int BOOKING_LIMIT = 10;
 
 	@Override
 	protected int getLayoutContentID()
@@ -57,8 +59,35 @@ public class BookingFragment extends BaseFragment
 			btnBook.setOnClickListener(btnBookOnClickListener());
 
 			String[] currentDateTime = CommonUtils.getCurrentDateTime().split(" ");
+
+			String bookingTime = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
+			String hour = bookingTime.substring(0, 2);
+			String minute = bookingTime.substring(2, 4);
+
+			int intHour = Integer.parseInt(hour);
+			int intMinute = Integer.parseInt(minute);
+
+			if (intMinute >= 30){
+				if (intMinute % 30 > BOOKING_LIMIT){
+					intHour += 1;
+					intMinute = 0;
+				}
+				else {
+					intMinute = 30;
+				}
+			}
+			else if (intMinute < 30){
+				if (intMinute % 30 > BOOKING_LIMIT){
+					intMinute = 30;
+				}
+				else {
+					intMinute = 0;
+				}
+			}
+
 			edtDate.setText(currentDateTime[0]);
-			edtStartTime.setText(currentDateTime[1]);
+			edtStartTime.setText(Integer.toString(intHour) + Integer.toString(intMinute));
+			//edtStartTime.setText(currentDateTime[1]);
 		}
 	}
 
