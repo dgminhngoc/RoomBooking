@@ -1,5 +1,6 @@
 package com.example.roombooking.fragments;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.roombooking.utils.CommonUtils;
 import com.example.roombooking.utils.ConstKeyBundle;
 import com.example.roombooking.utils.ConstRequestResult;
 
+import java.sql.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,44 +30,7 @@ public class BookingFragment extends BaseFragment
 	private EditText edtDate;
 	private EditText edtStartTime;
 	private EditText edtDuration;
-
 	public static final int BOOKING_LIMIT = 5;
-
-	@Override
-	protected int getLayoutContentID()
-	{
-		return R.layout.fragment_room_booking;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		Bundle dataBundle = getDataBundle();
-		if(dataBundle != null)
-		{
-			edtRoomName 	= view.findViewById(R.id.edt_room_name);
-			edtDate 			= view.findViewById(R.id.edt_date);
-			edtStartTime 	= view.findViewById(R.id.edt_start_time);
-			edtDuration 	= view.findViewById(R.id.edt_duration);
-
-			String roomName = dataBundle.getString(ConstKeyBundle.KEY_ROOM_NAME);
-			edtRoomName.setText(roomName);
-
-			Button btnCancel = view.findViewById(R.id.btn_cancel);
-			btnCancel.setOnClickListener(btnCancelOnClickListener());
-
-			Button btnBook = view.findViewById(R.id.btn_book);
-			btnBook.setOnClickListener(btnBookOnClickListener());
-
-			String[] currentDateTime = CommonUtils.getCurrentDateTime().split(" ");
-			String [] time = getTime();
-
-			edtDate.setText(currentDateTime[0]);
-			edtStartTime.setText(time[0]+ ":" + time[1]);
-		}
-	}
 
 	public String [] getTime(){
 		String bookingTime = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
@@ -105,6 +70,42 @@ public class BookingFragment extends BaseFragment
 		return new String[]{strHour, strMinute};
 	}
 
+	@Override
+	protected int getLayoutContentID()
+	{
+		return R.layout.fragment_room_booking;
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		Bundle dataBundle = getDataBundle();
+		if(dataBundle != null)
+		{
+			edtRoomName 	= view.findViewById(R.id.edt_room_name);
+			edtDate 			= view.findViewById(R.id.edt_date);
+			edtStartTime 	= view.findViewById(R.id.edt_start_time);
+			edtDuration 	= view.findViewById(R.id.edt_duration);
+
+			String roomName = dataBundle.getString(ConstKeyBundle.KEY_ROOM_NAME);
+			edtRoomName.setText(roomName);
+
+			Button btnCancel = view.findViewById(R.id.btn_cancel);
+			btnCancel.setOnClickListener(btnCancelOnClickListener());
+
+			Button btnBook = view.findViewById(R.id.btn_book);
+			btnBook.setOnClickListener(btnBookOnClickListener());
+
+			String[] currentDateTime = CommonUtils.getCurrentDateTime().split(" ");
+			String [] time = getTime();
+
+			edtDate.setText(currentDateTime[0]);
+			edtStartTime.setText(time[0]+ ":" + time[1]);
+		}
+	}
+
 	private View.OnClickListener btnCancelOnClickListener()
 	{
 		return new View.OnClickListener()
@@ -140,13 +141,22 @@ public class BookingFragment extends BaseFragment
 					&& startTime != null
 					&& duration != null)
 				{
-					SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-					String dateInString = date + " " + startTime;
+					SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+					String dateInString = date;
 					try
 					{
-						Date mDate = formatter.parse(dateInString);
-						long dateInMillis = mDate.getTime();
-						sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration));
+						Date mdate = formatter.parse(dateInString);
+						String[] mStartTime = startTime.split(":");
+						long dateInMillis = mdate.getTime() + (Integer.parseInt(mStartTime[0])*60 + Integer.parseInt(mStartTime[1])*60*1000);
+						if(!CommonUtils.isStartTimeValid(dateInMillis))
+						{
+							Toast.makeText(getActivity(), "Invalid start time", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						else
+						{
+							sendBookingRequestToServer(userToken, dateInMillis, Integer.parseInt(duration), edtRoomName.getText().toString());
+						}
 
 					} catch (ParseException e)
 					{
@@ -157,9 +167,9 @@ public class BookingFragment extends BaseFragment
 		};
 	}
 
-	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration)
+	private void sendBookingRequestToServer(String userToken, long startTimeInMillis, int duration, String roomName)
 	{
-		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration);
+		RoomBookingTask roomBookingTask = new RoomBookingTask(this, userToken, startTimeInMillis, duration, roomName);
 		roomBookingTask.execute();
 	}
 
@@ -169,19 +179,21 @@ public class BookingFragment extends BaseFragment
 		private BookingFragment bookingFragment;
 		private long startTimeInMillis;
 		private int duration;
+		private String roomName;
 
-		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration)
+		RoomBookingTask(BookingFragment bookingFragment, String userToken, long startTimeInMillis, int duration, String roomName)
 		{
 			this.userToken = userToken;
 			this.bookingFragment = bookingFragment;
 			this.startTimeInMillis = startTimeInMillis;
 			this.duration = duration;
+			this.roomName = roomName;
 		}
 
 		@Override
 		protected Integer doInBackground(Void... voids)
 		{
-			return ServerDummy.getInstance().checkRoomAvailability(userToken, startTimeInMillis, duration);
+			return ServerDummy.getInstance().checkRoomAvailability(userToken, startTimeInMillis, duration, roomName);
 		}
 
 		@Override
@@ -194,14 +206,14 @@ public class BookingFragment extends BaseFragment
 				switch (result)
 				{
 					case ConstRequestResult.RE_AVAILABLE:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_room_reserve_success), Toast.LENGTH_SHORT).show();
+						Toast.makeText(bookingFragment.getActivity(), "OK", Toast.LENGTH_SHORT).show();
 						bookingFragment.onBackPressed();
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
+						Toast.makeText(bookingFragment.getActivity(), "Room is not available", Toast.LENGTH_SHORT).show();
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();
+						Toast.makeText(bookingFragment.getActivity(), "Duration is too long", Toast.LENGTH_SHORT).show();
 						break;
 					default:
 						break;
