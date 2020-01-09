@@ -39,7 +39,7 @@
     <!-- Texts for dialog -->
     <string name="txt_room_dialog_txt_room_reserve_success_msg">Der Raum für Sie reserviert!</string>
     <string name="txt_room_dialog_txt_room_reserve_alternative_msg">Alternativer Raum</string>
-    <string name="dialog_txt_room_reserve_alternative_msg">Room is not available, but this room is: </string>
-    <string name="dialog_txt_empty">No room found</string>
+    <string name="dialog_txt_room_reserve_alternative_msg">Zimmer ist nicht verfügbar, aber dieses Zimmer ist: </string>
+    <string name="dialog_txt_empty">Kein Raum gefunden</string>
 
 </resources>
