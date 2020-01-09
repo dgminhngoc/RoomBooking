@@ -196,7 +196,7 @@ public class BookingFragment extends BaseFragment
 	private void showAlternative(final String roomName){
 		String msg = getActivity().getResources().getString(R.string.dialog_txt_room_reserve_alternative_msg) + " " + roomName;
 		new MaterialAlertDialogBuilder(getActivity())
-				.setTitle(getActivity().getResources().getString(R.string.dialog_txt_room_reserve_success_title))
+				.setTitle(getActivity().getResources().getString(R.string.txt_room_dialog_txt_room_reserve_alternative_msg))
 				.setMessage(msg)
 				.setPositiveButton(getActivity().getResources().getString(R.string.btn_txt_book), new DialogInterface.OnClickListener()
 				{
