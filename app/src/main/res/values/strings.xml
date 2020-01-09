@@ -41,6 +41,7 @@
     <!-- Texts for dialog -->
     <string name="dialog_txt_room_reserve_success_title" translatable="false">Succeed</string>
     <string name="txt_room_dialog_txt_room_reserve_success_msg">The room is reserved for you!</string>
+    <string name="txt_room_dialog_txt_room_reserve_alternative_msg">Alternative Room</string>
     <string name="dialog_txt_room_reserve_alternative_msg">Alternative room found!</string>
     <string name="dialog_txt_empty">No room found</string>
 
