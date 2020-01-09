@@ -35,8 +35,8 @@
 
     <!-- Texts for reservation result -->
     <string name="txt_room_reserve_success">The room is reserved for you!</string>
-    <string name="txt_romm_reserve_not_available">Room is not available</string>
-    <string name="txt_romm_reserve_duration_too_long">Duration is too long</string>
+    <string name="txt_room_reserve_not_available">Room is not available</string>
+    <string name="txt_room_reserve_duration_too_long">Duration is too long</string>
 
     <!-- Texts for dialog -->
     <string name="dialog_txt_room_reserve_success_title" translatable="false">Succeed</string>

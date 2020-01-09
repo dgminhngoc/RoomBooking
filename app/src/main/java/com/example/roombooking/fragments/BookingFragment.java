@@ -253,12 +253,12 @@ public class BookingFragment extends BaseFragment
 						bookingFragment.informBookingSucceed();
 						break;
 					case ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show();
+						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_room_reserve_not_available), Toast.LENGTH_SHORT).show();
 						List myList = RoomContainer.showAlternatives(roomName);
 						bookingFragment.showAlternative(myList.get(0).toString());
 						break;
 					case ConstRequestResult.RE_ERR_DURATION_TOO_LONG:
-						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show();
+						Toast.makeText(bookingFragment.getActivity(), bookingFragment.getActivity().getResources().getString(R.string.txt_room_reserve_duration_too_long), Toast.LENGTH_SHORT).show();
 						break;
 					default:
 						break;
