@@ -2,6 +2,7 @@ package com.example.roombooking.fragments
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -35,7 +36,8 @@ class BookingFragment : BaseFragment() {
             val currentDateTime = currentDateTime.split(" ").toTypedArray()
             val time = time
             edtDate.setText(currentDateTime[0])
-            edtStartTime.setText("$time[0] : $time[1]")
+            edtStartTime.setText(time[0] +":"+ time[1])
+            Log.i("MyApp", edtStartTime.text.toString())
         }
     }
 
