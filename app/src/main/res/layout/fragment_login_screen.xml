@@ -67,7 +67,7 @@
             app:layout_constraintBottom_toTopOf="@id/inLayout_password">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_username"
+                android:id="@+id/edtUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edt_txt_hint_username"
@@ -85,23 +85,23 @@
             app:layout_constraintTop_toBottomOf="@id/inLayout_username"
             app:layout_constraintLeft_toRightOf="@id/guideline_vertical_1"
             app:layout_constraintRight_toLeftOf="@id/guideline_vertical_2"
-            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintBottom_toTopOf="@id/btnLogin"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password"
+                android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:hint="@string/edt_txt_hint_password"
-                android:nextFocusDown="@id/btn_login"
+                android:nextFocusDown="@id/btnLogin"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button"
-            android:id="@+id/btn_login"
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -111,12 +111,12 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:id="@+id/btn_cancel"
+            android:id="@+id/btnClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
-            app:layout_constraintRight_toLeftOf="@id/btn_login"
+            app:layout_constraintRight_toLeftOf="@id/btnLogin"
             app:layout_constraintTop_toBottomOf="@id/inLayout_password"
             android:text="@string/btn_txt_clear" />
 
