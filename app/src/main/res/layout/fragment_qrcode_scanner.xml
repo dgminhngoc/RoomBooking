@@ -7,7 +7,7 @@
     android:padding="20dp">
 
     <SurfaceView
-        android:id="@+id/surface_view"
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,14 +17,14 @@
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/txt_barcode_value"
+        android:id="@+id/textBarcodeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="@string/txt_no_valid_code"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="@id/surface_view"
-        app:layout_constraintLeft_toLeftOf="@id/surface_view"
+        app:layout_constraintTop_toTopOf="@id/surfaceView"
+        app:layout_constraintLeft_toLeftOf="@id/surfaceView"
         android:textSize="20sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
