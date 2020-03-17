@@ -5,10 +5,7 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -24,11 +21,11 @@ import java.io.IOException;
 
 public class QRCodeScannerFragment extends BaseFragment
 {
-	private SurfaceView surfaceView;
+	private SurfaceView 		surfaceView;
 	private BarcodeDetector barcodeDetector;
-	private CameraSource cameraSource;
+	private CameraSource 	cameraSource;
 
-	private TextView txtBarcodeValue;
+	private TextView 			txtBarcodeValue;
 
 	@Override
 	protected int getLayoutContentID()
