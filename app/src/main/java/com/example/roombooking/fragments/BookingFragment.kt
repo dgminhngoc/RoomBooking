@@ -127,9 +127,12 @@ class BookingFragment : BaseFragment() {
             super.onPostExecute(result)
             if (bookingFragment != null) {
                 when (result) {
-                    ConstRequestResult.RE_AVAILABLE -> bookingFragment.informBookingSucceed()
-                    ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE -> Toast.makeText(bookingFragment.activity, bookingFragment.activity!!.resources.getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show()
-                    ConstRequestResult.RE_ERR_DURATION_TOO_LONG -> Toast.makeText(bookingFragment.activity, bookingFragment.activity!!.resources.getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show()
+                    ConstRequestResult.RE_AVAILABLE
+                        -> bookingFragment.informBookingSucceed()
+                    ConstRequestResult.RE_ERR_ROOM_NOT_AVAILABLE
+                        -> Toast.makeText(bookingFragment.activity, bookingFragment.activity!!.resources.getString(R.string.txt_romm_reserve_not_available), Toast.LENGTH_SHORT).show()
+                    ConstRequestResult.RE_ERR_DURATION_TOO_LONG
+                        -> Toast.makeText(bookingFragment.activity, bookingFragment.activity!!.resources.getString(R.string.txt_romm_reserve_duration_too_long), Toast.LENGTH_SHORT).show()
                     else -> {
                     }
                 }
